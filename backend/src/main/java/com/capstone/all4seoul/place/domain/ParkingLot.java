@@ -1,6 +1,12 @@
 package com.capstone.all4seoul.place.domain;
 
-public class ParkingLot {
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("P")
+public class ParkingLot extends Place {
+
     private int capacity;
     private int price;
     private int dues;
