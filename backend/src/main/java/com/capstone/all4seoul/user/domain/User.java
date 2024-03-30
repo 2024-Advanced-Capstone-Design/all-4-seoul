@@ -26,17 +26,18 @@ public class User {
     private String loginPassword;
 
     @Column(name = "name", nullable = false, length = 30)
-    private String name;
+    private String username;
 
     @Column(name = "birth", nullable = false)
     private LocalDate birth;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "mbti", nullable = false)
-    private String mbti;
+    private Mbti mbti;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     @Column(name = "gender", nullable = false)
-    private String gender;
+    private Gender gender;
 
     @Column(name = "nickname", nullable = false, unique = true, length = 30)
     private String nickName;
@@ -44,14 +45,10 @@ public class User {
     @Column(name = "credit", nullable = false)
     private int credit;
 
-
-    /**
-     * List로 수정
-     */
     @OneToMany(mappedBy = "user")
     private List<Review> reviews = new ArrayList<>();
 
-    // place 자체는 지역정보인데, List로 만들어서 북마크 느낌
+    // 북마크
     @OneToMany(mappedBy = "user")
     private List<Place> places = new ArrayList<>();
 }
