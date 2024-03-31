@@ -19,5 +19,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findListByUsername(String username);
 
     //단건 조회
-    User findUserByUsername(String username);
+    User findFirstByUsername(String username);
 }
