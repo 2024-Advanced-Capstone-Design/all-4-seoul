@@ -38,5 +38,8 @@ public class Review {
         user.getReviews().add(this);
     }
 
-
+    public void setPlace(Place place) {
+        this.place = place;
+        place.getReviews().add(this);
+    }
 }
