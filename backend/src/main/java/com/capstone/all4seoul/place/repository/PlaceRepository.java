@@ -8,8 +8,7 @@ import java.util.List;
 
 public interface PlaceRepository extends JpaRepository<Place, Long> {
 
-    List<Place> findAll(Pageable pageable);
-
+    List<Place> findAll();
     List<Place> findListByUserId(Long userId);
 
     Place findByName(String name);
