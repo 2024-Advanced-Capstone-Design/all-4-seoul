@@ -23,4 +23,9 @@ public class UserService {
             throw new RuntimeException("사용자 생성 중 오류가 발생했습니다.", e);
         }
     }
+
+    //로그인 아이디로 조회
+    public User findByLoginId(String loginId) {
+        return userRepository.findByLoginId(loginId);
+    }
 }
