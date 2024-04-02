@@ -35,4 +35,9 @@ public class UserService {
     public List<User> findListByUsername(String username) {
         return userRepository.findListByUsername(username);
     }
+
+    //단건 조회 - 첫번째 유저 반환
+    public User findFirstByUsername(String username) {
+        return userRepository.findFirstByUsername(username);
+    }
 }
