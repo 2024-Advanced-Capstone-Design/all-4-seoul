@@ -40,4 +40,8 @@ public class UserService {
     public User findFirstByUsername(String username) {
         return userRepository.findFirstByUsername(username);
     }
+
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
 }
