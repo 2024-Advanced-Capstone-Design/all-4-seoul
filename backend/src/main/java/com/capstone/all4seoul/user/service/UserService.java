@@ -6,6 +6,8 @@ import com.capstone.all4seoul.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -27,5 +29,10 @@ public class UserService {
     //로그인 아이디로 조회
     public User findByLoginId(String loginId) {
         return userRepository.findByLoginId(loginId);
+    }
+
+    //컬렉션 조회
+    public List<User> findListByUsername(String username) {
+        return userRepository.findListByUsername(username);
     }
 }
