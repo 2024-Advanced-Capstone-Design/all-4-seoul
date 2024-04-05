@@ -12,7 +12,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class UserDto {
+public class JoinUserRequest {
     @NotBlank(message = "로그인 ID를 입력해주세요.")
     private String loginId;
 
