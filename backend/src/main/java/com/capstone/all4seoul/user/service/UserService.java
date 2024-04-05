@@ -1,10 +1,12 @@
 package com.capstone.all4seoul.user.service;
 
 import com.capstone.all4seoul.user.domain.User;
-import com.capstone.all4seoul.user.dto.UserDto;
+import com.capstone.all4seoul.user.dto.request.JoinUserRequest;
+import com.capstone.all4seoul.user.dto.request.UpdateUserRequest;
 import com.capstone.all4seoul.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -12,11 +14,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
-    public void joinUser(UserDto userDto) {
-        User user = User.createUser(userDto);
+    public void join(JoinUserRequest joinUserRequest) {
+        User user = User.createUser(joinUserRequest);
 
         // 사용자 생성 전 중복 로그인 ID 확인
-        if (userRepository.findByLoginId(userDto.getLoginId()) != null) {
+        if (userRepository.findByLoginId(joinUserRequest.getLoginId()) != null) {
             throw new IllegalArgumentException("이미 사용 중인 로그인 아이디입니다.");
         }
         try {
