@@ -5,13 +5,15 @@ import com.capstone.all4seoul.user.domain.Mbti;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Getter
-@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class JoinUserRequest {
     @NotBlank(message = "로그인 ID를 입력해주세요.")
     private String loginId;
