@@ -45,10 +45,12 @@ public class User {
     @Column(name = "credit", nullable = false)
     private int credit;
 
-    @OneToMany(mappedBy = "user")
+    //    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Review> reviews = new ArrayList<>();
 
     // 북마크
-    @OneToMany(mappedBy = "user")
+//    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Place> places = new ArrayList<>();
 }
