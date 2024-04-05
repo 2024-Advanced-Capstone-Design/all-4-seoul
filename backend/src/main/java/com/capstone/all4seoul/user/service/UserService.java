@@ -26,6 +26,10 @@ public class UserService {
         }
     }
 
+    public User findById(Long userId) {
+        return userRepository.findById(userId).get();
+    }
+
     //로그인 아이디로 조회
     public User findByLoginId(String loginId) {
         return userRepository.findByLoginId(loginId);
