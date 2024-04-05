@@ -1,4 +1,4 @@
-package com.capstone.all4seoul.user.dto;
+package com.capstone.all4seoul.user.dto.request;
 
 import com.capstone.all4seoul.user.domain.Gender;
 import com.capstone.all4seoul.user.domain.Mbti;
