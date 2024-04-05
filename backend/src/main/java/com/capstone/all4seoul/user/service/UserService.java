@@ -40,6 +40,16 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    @Transactional
+    public void updateUser(Long id, UpdateUserRequest updateUserRequest) {
+
+        User findUser = userRepository.findById(id).get();
+
+        findUser.setBirth(updateUserRequest.getBirth());
+        findUser.setMbti(updateUserRequest.getMbti());
+        findUser.setNickName(updateUserRequest.getNickName());
+    }
+
     public void deleteUser(User user) {
         userRepository.delete(user);
     }
