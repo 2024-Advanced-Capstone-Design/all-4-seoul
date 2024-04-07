@@ -39,4 +39,26 @@ public class Event {
 
     @Column(name = "y", nullable = false, length = 30)
     private String y;
+
+    public static Event createEvent(
+            String name,
+            LocalDateTime startDate,
+            LocalDateTime endDate,
+            int price,
+            Place place,
+            String x,
+            String y
+    ) {
+        Event event = new Event();
+
+        event.name = name;
+        event.startDate = startDate;
+        event.endDate = endDate;
+        event.price = price;
+        event.place = place;
+        event.x = x;
+        event.y = y;
+
+        return event;
+    }
 }
