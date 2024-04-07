@@ -39,4 +39,12 @@ public class PlaceService {
                 .map(DetailPlaceResponse::of)
                 .toList();
     }
+    // 유저의 북마크에 장소 추가
+    @Transactional
+    public void addPlaceToUserBookmark(Long userId, Long placeId) {
+        User user = userRepository.findById(userId).get();
+        Place place = placeRepository.findById(placeId).get();
+
+        user.getPlaces().add(place);
+    }
 }
