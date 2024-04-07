@@ -1,5 +1,6 @@
 package com.capstone.all4seoul.place.domain;
 
+import com.capstone.all4seoul.event.domain.Event;
 import com.capstone.all4seoul.review.domain.Review;
 import com.capstone.all4seoul.user.domain.User;
 import jakarta.persistence.*;
@@ -25,6 +26,9 @@ public class Place {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
+    private List<Event> events;
 
     // 장소이름
     @Column(name = "name", nullable = false, length = 100)
