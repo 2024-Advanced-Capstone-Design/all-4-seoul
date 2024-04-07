@@ -32,5 +32,11 @@ public class PlaceService {
                 .map(DetailPlaceResponse::of)
                 .toList();
     }
-
+    //장소 이름으로 장소 리스트 조회
+    public List<DetailPlaceResponse> findPlacesByName(String name) {
+        return placeRepository.findByName(name)
+                .stream()
+                .map(DetailPlaceResponse::of)
+                .toList();
+    }
 }
