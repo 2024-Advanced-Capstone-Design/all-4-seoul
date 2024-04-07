@@ -30,7 +30,7 @@ public class Event {
 
     @OneToOne
     @JoinColumn(name = "place_id")
-    private Place location;
+    private Place place;
 
     @Column(name = "x", nullable = false, length = 30)
     private String x;
