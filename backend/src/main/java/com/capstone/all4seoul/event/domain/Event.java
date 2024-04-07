@@ -2,10 +2,13 @@ package com.capstone.all4seoul.event.domain;
 
 import com.capstone.all4seoul.place.domain.Place;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "events")
 public class Event {
     @Id
