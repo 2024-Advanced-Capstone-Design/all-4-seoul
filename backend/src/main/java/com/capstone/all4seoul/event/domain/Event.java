@@ -3,11 +3,9 @@ package com.capstone.all4seoul.event.domain;
 import com.capstone.all4seoul.place.domain.Place;
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.Setter;
 
 @Entity
 @Getter
-@Setter
 @Table(name = "events")
 public class Event {
     @Id
