@@ -1,5 +1,6 @@
 package com.capstone.all4seoul.review.domain;
 
+import com.capstone.all4seoul.event.domain.Event;
 import com.capstone.all4seoul.place.domain.Place;
 import com.capstone.all4seoul.user.domain.User;
 import jakarta.persistence.Column;
@@ -38,6 +39,10 @@ public class Review {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "place_id", nullable = false, updatable = false)
     private Place place;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "event_id", nullable = false, updatable = false)
+    private Event event;
 
     public static Review create(User user, String content, Double starRating) {
         Review review = new Review();
