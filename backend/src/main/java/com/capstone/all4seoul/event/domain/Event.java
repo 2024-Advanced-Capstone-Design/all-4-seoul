@@ -19,8 +19,11 @@ public class Event {
     @Column(name = "name", nullable = false, length = 100)
     private String name;
 
-    @Column(name = "period", nullable = false)
-    private String period;
+    @Column(name = "start_date", nullable = false)
+    private LocalDateTime startDate;
+
+    @Column(name = "end_date", nullable = false)
+    private LocalDateTime endDate;
 
     @Column(name = "price")
     private String price;
