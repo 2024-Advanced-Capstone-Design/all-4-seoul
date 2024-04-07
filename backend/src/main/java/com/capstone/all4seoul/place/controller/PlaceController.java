@@ -33,4 +33,9 @@ public class PlaceController {
         return placeService.findPlacesByName(name);
     }
 
+    //유저 북마크에 장소 추가
+    @PostMapping("/users/{userId}/places/{placeId}")
+    public void addPlaceToUserBookmark(@PathVariable Long userId, @PathVariable Long placeId) {
+        placeService.addPlaceToUserBookmark(userId, placeId);
+    }
 }
