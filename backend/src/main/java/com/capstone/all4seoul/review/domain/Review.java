@@ -66,6 +66,11 @@ public class Review {
         place.getReviews().add(this);
     }
 
+    public void setEvent(Event event) {
+        this.event = event;
+        event.getReviews().add(this);
+    }
+
     /**
      * 리뷰 수정 관련 메서드
      */
