@@ -26,7 +26,7 @@ public class Event {
     private LocalDateTime endDate;
 
     @Column(name = "price")
-    private String price;
+    private int price;
 
     @OneToOne
     @JoinColumn(name = "place_id")
