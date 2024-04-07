@@ -25,4 +25,12 @@ public class PlaceService {
                 .map(DetailPlaceResponse::of)
                 .toList();
     }
+    //유저 한 명에 대해 북마크 조회
+    public List<DetailPlaceResponse> findPlacesByUserId(Long userId) {
+        return placeRepository.findListByUserId(userId)
+                .stream()
+                .map(DetailPlaceResponse::of)
+                .toList();
+    }
+
 }
