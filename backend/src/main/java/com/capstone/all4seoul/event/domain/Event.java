@@ -1,12 +1,15 @@
 package com.capstone.all4seoul.event.domain;
 
 import com.capstone.all4seoul.place.domain.Place;
+import com.capstone.all4seoul.review.domain.Review;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -39,6 +42,9 @@ public class Event {
 
     @Column(name = "y", nullable = false, length = 30)
     private String y;
+
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
+    private List<Review> reviews = new ArrayList<>();
 
     public static Event createEvent(
             String name,
