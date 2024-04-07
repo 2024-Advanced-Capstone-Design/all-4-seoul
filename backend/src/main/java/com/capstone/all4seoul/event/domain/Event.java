@@ -30,7 +30,7 @@ public class Event {
     @Column(name = "price")
     private int price;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "place_id")
     private Place place;
 
