@@ -49,12 +49,34 @@ public class Place {
     @Column(name = "y", nullable = false)
     private Double y;
 
+    public static Place createPlace(
+            User user,
+            List<Event> events,
+            String name,
+            List<Review> reviews,
+            String phoneNumber,
+            String address,
+            Double x,
+            Double y
+    ) {
+        Place place = new Place();
 
+        place.setUser(user);
+        place.events = events;
+        place.name = name;
+        place.reviews = reviews;
+        place.phoneNumber = phoneNumber;
+        place.address = address;
+        place.x = x;
+        place.y = y;
+
+        return place;
+    }
 
     /**
      * 연관관계 메서드
      */
-    public void setUser(User user) {
+    private void setUser(User user) {
         this.user = user;
         user.getPlaces().add(this);
     }
