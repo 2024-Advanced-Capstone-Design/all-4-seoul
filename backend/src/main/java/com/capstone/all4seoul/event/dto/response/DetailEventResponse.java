@@ -16,8 +16,8 @@ import java.util.List;
 public class DetailEventResponse {
 
     private String name;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    private LocalDateTime startDateTime;
+    private LocalDateTime endDateTime;
     private int price;
     private List<DetailReviewResponse> reviews;
 

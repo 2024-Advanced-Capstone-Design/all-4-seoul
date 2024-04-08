@@ -35,10 +35,10 @@ public class Event {
     private String name;
 
     @Column(name = "start_date", nullable = false)
-    private LocalDateTime startDate;
+    private LocalDateTime startDateTime;
 
     @Column(name = "end_date", nullable = false)
-    private LocalDateTime endDate;
+    private LocalDateTime endDateTime;
 
     @Column(name = "price")
     private int price;
@@ -58,8 +58,8 @@ public class Event {
 
     public static Event createEvent(
             String name,
-            LocalDateTime startDate,
-            LocalDateTime endDate,
+            LocalDateTime startDateTime,
+            LocalDateTime endDateTime,
             int price,
             Place place,
             Double x,
@@ -68,8 +68,8 @@ public class Event {
         Event event = new Event();
 
         event.name = name;
-        event.startDate = startDate;
-        event.endDate = endDate;
+        event.startDateTime = startDateTime;
+        event.endDateTime = endDateTime;
         event.price = price;
         event.setPlace(place);
         event.x = x;
