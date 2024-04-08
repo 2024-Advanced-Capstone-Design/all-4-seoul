@@ -37,11 +37,11 @@ public class Event {
     @JoinColumn(name = "place_id")
     private Place place;
 
-    @Column(name = "x", nullable = false, length = 30)
-    private String x;
+    @Column(name = "x", nullable = false)
+    private Double x;
 
-    @Column(name = "y", nullable = false, length = 30)
-    private String y;
+    @Column(name = "y", nullable = false)
+    private Double y;
 
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     private List<Review> reviews = new ArrayList<>();
@@ -52,8 +52,8 @@ public class Event {
             LocalDateTime endDate,
             int price,
             Place place,
-            String x,
-            String y
+            Double x,
+            Double y
     ) {
         Event event = new Event();
 
