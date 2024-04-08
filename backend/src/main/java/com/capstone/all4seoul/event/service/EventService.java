@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -18,5 +20,15 @@ public class EventService {
      */
     public DetailEventResponse findById(Long eventId) {
         return DetailEventResponse.of(eventRepository.findById(eventId).get());
+    }
+
+    /**
+     * 이벤트 전체 조회
+     */
+    public List<DetailEventResponse> findAll() {
+        return eventRepository.findAll()
+                .stream()
+                .map(DetailEventResponse::of)
+                .toList();
     }
 }
