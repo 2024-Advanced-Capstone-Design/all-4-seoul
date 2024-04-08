@@ -3,7 +3,7 @@ package com.capstone.all4seoul.event.dto.response;
 import com.capstone.all4seoul.event.domain.Event;
 import com.capstone.all4seoul.place.domain.Place;
 import com.capstone.all4seoul.review.dto.response.DetailReviewResponse;
-import lombok.AllArgsConstructor;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -11,8 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class DetailEventResponse {
 
     private String name;
