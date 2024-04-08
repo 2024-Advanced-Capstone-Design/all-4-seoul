@@ -42,11 +42,11 @@ public class Place {
     @Column(name = "address", nullable = false)
     private String address;
 
-    @Column(name = "x", nullable = false, length = 30)
-    private String x;
+    @Column(name = "x", nullable = false)
+    private Double x;
 
-    @Column(name = "y", nullable = false, length = 30)
-    private String y;
+    @Column(name = "y", nullable = false)
+    private Double y;
 
     /**
      * 연관관계 메서드
