@@ -13,7 +13,10 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     Event findByName(String name);
 
     @Query("SELECT e FROM Event e WHERE e.startDateTime >= :startDateTime AND e.endDateTime <= :endDateTime")
-    List<Event> findByPeriod(@Param("start") LocalDateTime startDateTime, @Param("end") LocalDateTime endDateTime);
+    List<Event> findByPeriod(
+            @Param("startDateTime") LocalDateTime startDateTime,
+            @Param("endDateTime") LocalDateTime endDateTime
+    );
 
     void deleteById(Long eventId);
 }
