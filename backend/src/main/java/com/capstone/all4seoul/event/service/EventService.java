@@ -42,4 +42,21 @@ public class EventService {
                 .map(DetailEventResponse::of)
                 .toList();
     }
+
+    /**
+     * 반경 안의 이벤트 목록 조회
+     */
+    private double calculateDistance(Double lat1, Double lon1, Double lat2, Double lon2) {
+
+        final int EARTH_RADIUS = 6371; // 지구의 반지름 (km)
+
+        double latDistance = Math.toRadians(lat2 - lat1);
+        double lonDistance = Math.toRadians(lon2 - lon1);
+        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+                + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
+                * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+        return EARTH_RADIUS * c * 1000;
+    }
 }
