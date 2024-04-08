@@ -2,7 +2,17 @@ package com.capstone.all4seoul.event.domain;
 
 import com.capstone.all4seoul.place.domain.Place;
 import com.capstone.all4seoul.review.domain.Review;
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -61,10 +71,18 @@ public class Event {
         event.startDate = startDate;
         event.endDate = endDate;
         event.price = price;
-        event.place = place;
+        event.setPlace(place);
         event.x = x;
         event.y = y;
 
         return event;
+    }
+
+    /**
+     * 연관관계 메서드
+     */
+    private void setPlace(Place place) {
+        this.place = place;
+        place.getEvents().add(this);
     }
 }
