@@ -46,6 +46,14 @@ public class EventService {
     /**
      * 반경 안의 이벤트 목록 조회
      */
+    public List<DetailEventResponse> findEventsByLocation(Double x, Double y, int radius) {
+        return eventRepository.findAll()
+                .stream()
+                .filter(event -> isWithinRadius(event.getX(), event.getY(), x, y, radius))
+                .map(DetailEventResponse::of)
+                .toList();
+    }
+
     private boolean isWithinRadius(Double x1, Double y1, Double x2, Double y2, int radius) {
         return calculateDistance(x1, y1, x2, y2) <= radius;
     }
