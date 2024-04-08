@@ -5,14 +5,12 @@ import com.capstone.all4seoul.review.domain.Review;
 import com.capstone.all4seoul.user.domain.User;
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
-@Setter
 @Table(name = "places")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "DTYPE") //하위 테이블 구분 칼럼
@@ -47,6 +45,8 @@ public class Place {
 
     @Column(name = "y", nullable = false)
     private Double y;
+
+
 
     /**
      * 연관관계 메서드
