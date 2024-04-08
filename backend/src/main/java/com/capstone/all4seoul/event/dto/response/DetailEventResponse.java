@@ -26,4 +26,26 @@ public class DetailEventResponse {
     private String placeAddress;
     private Double placeX;
     private Double placeY;
+
+    public static DetailEventResponse of(Event event) {
+        DetailEventResponse detailEventResponse = new DetailEventResponse();
+
+        detailEventResponse.name = event.getName();
+        detailEventResponse.startDateTime = event.getStartDateTime();
+        detailEventResponse.endDateTime = event.getEndDateTime();
+        detailEventResponse.price = event.getPrice();
+        detailEventResponse.reviews = event.getReviews()
+                .stream()
+                .map(DetailReviewResponse::of)
+                .toList();
+
+        Place place = event.getPlace();
+        detailEventResponse.placeName = place.getName();
+        detailEventResponse.placePhoneNumber = place.getPhoneNumber();
+        detailEventResponse.placeAddress = place.getAddress();
+        detailEventResponse.placeX = place.getX();
+        detailEventResponse.placeY = place.getY();
+
+        return detailEventResponse;
+    }
 }
