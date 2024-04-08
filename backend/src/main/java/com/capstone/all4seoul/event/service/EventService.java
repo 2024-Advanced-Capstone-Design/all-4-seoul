@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -27,6 +28,16 @@ public class EventService {
      */
     public List<DetailEventResponse> findAll() {
         return eventRepository.findAll()
+                .stream()
+                .map(DetailEventResponse::of)
+                .toList();
+    }
+
+    /**
+     * 특정 기간 내의 이벤트 목록 조회
+     */
+    public List<DetailEventResponse> findEventsByPeriod(LocalDateTime startDateTime, LocalDateTime endDateTime) {
+        return eventRepository.findByPeriod(startDateTime, endDateTime)
                 .stream()
                 .map(DetailEventResponse::of)
                 .toList();
