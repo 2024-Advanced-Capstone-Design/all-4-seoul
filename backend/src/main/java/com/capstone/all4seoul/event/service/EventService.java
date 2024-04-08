@@ -46,6 +46,10 @@ public class EventService {
     /**
      * 반경 안의 이벤트 목록 조회
      */
+    private boolean isWithinRadius(Double x1, Double y1, Double x2, Double y2, int radius) {
+        return calculateDistance(x1, y1, x2, y2) <= radius;
+    }
+
     private double calculateDistance(Double lat1, Double lon1, Double lat2, Double lon2) {
 
         final int EARTH_RADIUS = 6371; // 지구의 반지름 (km)
