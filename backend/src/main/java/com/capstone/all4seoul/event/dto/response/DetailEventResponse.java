@@ -1,5 +1,7 @@
 package com.capstone.all4seoul.event.dto.response;
 
+import com.capstone.all4seoul.event.domain.Event;
+import com.capstone.all4seoul.place.domain.Place;
 import com.capstone.all4seoul.review.dto.response.DetailReviewResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,7 +25,6 @@ public class DetailEventResponse {
     private String placeName;
     private String placePhoneNumber;
     private String placeAddress;
-    private String placeX;
-    private String placeY;
-
+    private Double placeX;
+    private Double placeY;
 }
