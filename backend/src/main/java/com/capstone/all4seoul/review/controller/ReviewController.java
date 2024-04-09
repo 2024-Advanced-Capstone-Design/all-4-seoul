@@ -21,16 +21,25 @@ import java.util.List;
 public class ReviewController {
     private final ReviewService reviewService;
 
-    //리뷰등록
-    @PostMapping("/reviews")
-    public ResponseEntity<Object> create(@RequestBody CreateReviewRequestForPlace request) {
-
-        reviewService.createReviewForPlace(request);
+    /**
+     * 장소 리뷰 등록
+     */
+    @PostMapping("/places/{placeId}/reviews")
+    public ResponseEntity<Object> createReviewForPlace(@PathVariable Long placeId, @RequestBody CreateReviewRequestForPlace request) {
+        reviewService.createReviewForPlace(placeId, request);
 
         return ResponseEntity.noContent().build();
     }
 
-    //리뷰 리스트 조회
+    /**
+     * 이벤트 리뷰 등록
+     */
+    @PostMapping("/events/{eventId}/reviews")
+    public ResponseEntity<Object> createReviewForEvent(@PathVariable Long eventId, @RequestBody CreateReviewRequestForEvent request) {
+        reviewService.createReviewForEvent(eventId, request);
+
+        return ResponseEntity.noContent().build();
+    }
     @GetMapping("/reviews")
     public List<DetailReviewResponse> findAll() {
         return reviewService.findAll();
