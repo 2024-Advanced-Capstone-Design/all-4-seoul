@@ -19,8 +19,27 @@ INSERT INTO events (event_id, name, start_date, end_date, price, place_id, x, y)
 VALUES (2, '테스트 이벤트2', '2024-05-01 09:00:00', '2024-05-03 18:00:00', 30000, 1, '127.002', '37.003');
 
 -- reviews 테이블에 더미 데이터 추가
-insert into reviews (review_id, user_id, event_id, star_rating, content, place_id)
-values (1, 1, 1, 1.4,
-        'Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.', 1);
-insert into reviews (review_id, user_id, event_id, star_rating, content, place_id)
-values (2, 2, 1, 3.2, 'Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti.', 2);
+
+-- 장소 리뷰 데이터
+insert into reviews (review_id, user_id, star_rating, content, place_id)
+values (1, 1, 1.4,
+        '장소 리뷰 1', 1);
+insert into reviews (review_id, user_id, star_rating, content, place_id)
+values (2, 2, 3.2, '장소 리뷰 2', 1);
+insert into reviews (review_id, user_id, star_rating, content, place_id)
+values (3, 1, 1.4,
+        '장소 리뷰 3', 2);
+insert into reviews (review_id, user_id, star_rating, content, place_id)
+values (4, 2, 3.2, '장소 리뷰 4', 2);
+
+-- 이벤트 리뷰 데이터
+insert into reviews (review_id, user_id, event_id, star_rating, content)
+values (5, 1, 1, 1.4,
+        '이벤트 리뷰 1');
+insert into reviews (review_id, user_id, event_id, star_rating, content)
+values (6, 2, 1, 3.2, '이벤트 리뷰 2');
+insert into reviews (review_id, user_id, event_id, star_rating, content)
+values (7, 1, 2, 1.4,
+        '이벤트 리뷰 3');
+insert into reviews (review_id, user_id, event_id, star_rating, content)
+values (8, 2, 2, 3.2, '이벤트 리뷰 4');
