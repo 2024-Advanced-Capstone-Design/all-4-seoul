@@ -50,6 +50,14 @@ public class ReviewController {
         return reviewService.findReviewsByPlace(placeId);
     }
 
+    /**
+     * 이벤트에 따른 리뷰 목록 조회
+     */
+    @GetMapping("/events/{eventId}/reviews")
+    public List<DetailReviewResponse> listReviewsByEvent(@PathVariable Long eventId) {
+        return reviewService.findReviewsByEvent(eventId);
+    }
+
     @GetMapping("/reviews")
     public List<DetailReviewResponse> findAll() {
         return reviewService.findAll();
