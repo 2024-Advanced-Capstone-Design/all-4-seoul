@@ -19,12 +19,25 @@ import java.util.List;
 public class ReviewService {
     private final ReviewRepository reviewRepository;
     private final UserRepository userRepository;
+    private final PlaceRepository placeRepository;
+    private final EventRepository eventRepository;
 
     //장소기반
     @Transactional
-    public Long createReviewForPlace(CreateReviewRequestForPlace request) {
+    public Long createReviewForPlace(Long placeId, CreateReviewRequestForPlace request) {
         User user = userRepository.findById(request.getId()).get();
-        Review review = Review.create(user, request.getContent(), request.getStarRating());
+        Place place = placeRepository.findById(placeId).get();
+        Review review = Review.createReviewForPlace(user, place, request.getContent(), request.getStarRating());
+        reviewRepository.save(review);
+
+        return review.getId();
+    }
+
+    @Transactional
+    public Long createReviewForEvent(Long eventId, CreateReviewRequestForEvent request) {
+        User user = userRepository.findById(request.getId()).get();
+        Event event = eventRepository.findById(eventId).get();
+        Review review = Review.createReviewForEvent(user, event, request.getContent(), request.getStarRating());
         reviewRepository.save(review);
 
         return review.getId();
