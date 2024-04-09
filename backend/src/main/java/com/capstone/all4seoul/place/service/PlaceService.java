@@ -18,6 +18,11 @@ public class PlaceService {
     private final PlaceRepository placeRepository;
     private final UserRepository userRepository;
 
+    //단일 장소 조회
+    public DetailPlaceResponse findById(Long placeId) {
+        return DetailPlaceResponse.of(placeRepository.findById(placeId).get());
+    }
+
     //전체 장소 조회
     public List<DetailPlaceResponse> findAll() {
         return placeRepository.findAll()
