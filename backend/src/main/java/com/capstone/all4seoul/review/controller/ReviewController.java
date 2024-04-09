@@ -1,5 +1,6 @@
 package com.capstone.all4seoul.review.controller;
 
+import com.capstone.all4seoul.review.dto.request.CreateReviewRequestForEvent;
 import com.capstone.all4seoul.review.dto.request.CreateReviewRequestForPlace;
 import com.capstone.all4seoul.review.dto.request.UpdateReviewRequest;
 import com.capstone.all4seoul.review.dto.response.DetailReviewResponse;
@@ -40,6 +41,15 @@ public class ReviewController {
 
         return ResponseEntity.noContent().build();
     }
+
+    /**
+     * 장소에 따른 리뷰 목록 조회
+     */
+    @GetMapping("/places/{placeId}/reviews")
+    public List<DetailReviewResponse> listReviewsByPlace(@PathVariable Long placeId) {
+        return reviewService.findReviewsByPlace(placeId);
+    }
+
     @GetMapping("/reviews")
     public List<DetailReviewResponse> findAll() {
         return reviewService.findAll();
@@ -48,7 +58,6 @@ public class ReviewController {
     //리뷰 수정
     @PatchMapping("/reviews/{reviewId}")
     public ResponseEntity<Object> updateUser(@PathVariable Long userId, @RequestBody UpdateReviewRequest request) {
-
         reviewService.updateReview(userId, request);
 
         return ResponseEntity.noContent().build();
@@ -57,7 +66,6 @@ public class ReviewController {
     //리뷰 삭제
     @DeleteMapping("/reviews/{reviewId}")
     public ResponseEntity<Object> deleteReview(@PathVariable Long reviewId) {
-
         reviewService.deleteReview(reviewService.findById(reviewId));
 
         return ResponseEntity.noContent().build();
