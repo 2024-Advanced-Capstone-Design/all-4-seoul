@@ -7,8 +7,6 @@ import java.util.List;
 
 public interface ReviewRepository extends JpaRepository<Review, Long> {
     List<Review> findByUserLoginId(String loginId);
-
-    //장소 이름으로 리뷰 리스트 조회
-    List<Review> findByPlaceName(String placeId);
     List<Review> findByPlaceId(Long placeId);
+    List<Review> findByEventId(Long eventId);
 }
