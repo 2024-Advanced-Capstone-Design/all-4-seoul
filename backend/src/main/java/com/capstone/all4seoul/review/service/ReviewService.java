@@ -1,6 +1,11 @@
 package com.capstone.all4seoul.review.service;
 
+import com.capstone.all4seoul.event.domain.Event;
+import com.capstone.all4seoul.event.repository.EventRepository;
+import com.capstone.all4seoul.place.domain.Place;
+import com.capstone.all4seoul.place.repository.PlaceRepository;
 import com.capstone.all4seoul.review.domain.Review;
+import com.capstone.all4seoul.review.dto.request.CreateReviewRequestForEvent;
 import com.capstone.all4seoul.review.dto.request.CreateReviewRequestForPlace;
 import com.capstone.all4seoul.review.dto.request.UpdateReviewRequest;
 import com.capstone.all4seoul.review.dto.response.DetailReviewResponse;
@@ -51,6 +56,14 @@ public class ReviewService {
     //리뷰 리스트 조회
     public List<DetailReviewResponse> findAll() {
         return reviewRepository.findAll()
+                .stream()
+                .map(DetailReviewResponse::of)
+                .toList();
+    }
+
+    //특정 장소의 리뷰 목록 조회
+    public List<DetailReviewResponse> findReviewsByPlace(Long placeId) {
+        return reviewRepository.findByPlaceId(placeId)
                 .stream()
                 .map(DetailReviewResponse::of)
                 .toList();
