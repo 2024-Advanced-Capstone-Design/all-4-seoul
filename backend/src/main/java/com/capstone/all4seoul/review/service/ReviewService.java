@@ -69,6 +69,14 @@ public class ReviewService {
                 .toList();
     }
 
+    //특정 이벤트의 리뷰 목록 조회
+    public List<DetailReviewResponse> findReviewsByEvent(Long eventId) {
+        return reviewRepository.findByEventId(eventId)
+                .stream()
+                .map(DetailReviewResponse::of)
+                .toList();
+    }
+
     //리뷰 업데이트
     @Transactional
     public void updateReview(Long reviewId, UpdateReviewRequest request) {
