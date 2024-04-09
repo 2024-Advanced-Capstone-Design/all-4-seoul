@@ -44,12 +44,35 @@ public class Review {
     @JoinColumn(name = "event_id", nullable = false, updatable = false)
     private Event event;
 
-    public static Review create(User user, String content, Double starRating) {
+    public static Review createReviewForPlace(
+            User user,
+            Place place,
+            String content,
+            Double starRating) {
         Review review = new Review();
-        review.user = user;
+
+        review.setUser(user);
+        review.setPlace(place);
+        review.event = null;
         review.content = content;
         review.starRating = starRating;
+
+        return review;
+    }
+
+    public static Review createReviewForEvent(
+            User user,
+            Event event,
+            String content,
+            Double starRating) {
+        Review review = new Review();
+
+        review.setUser(user);
+        review.setEvent(event);
         review.place = null;
+        review.content = content;
+        review.starRating = starRating;
+
         return review;
     }
 
