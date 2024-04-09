@@ -2,6 +2,7 @@ package com.capstone.all4seoul.place.dto.response;
 
 import com.capstone.all4seoul.place.domain.Place;
 import com.capstone.all4seoul.review.dto.response.DetailReviewResponse;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,8 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class DetailPlaceResponse {
     private String name;
     private List<DetailReviewResponse> reviews;
