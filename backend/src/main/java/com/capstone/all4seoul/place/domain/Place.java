@@ -48,6 +48,8 @@ public class Place {
     @Column(name = "website_uri", nullable = false)
     private URI websiteUri;
 
+    @Column(name = "category", nullable = false)
+    private Category category;
 
     public static Place createPlace(
             List<Event> events,
