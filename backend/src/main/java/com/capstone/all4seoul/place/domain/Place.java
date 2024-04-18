@@ -65,12 +65,4 @@ public class Place {
 
         return place;
     }
-
-    /**
-     * 연관관계 메서드
-     */
-    private void setUser(User user) {
-        this.user = user;
-        user.getPlaces().add(this);
-    }
 }
