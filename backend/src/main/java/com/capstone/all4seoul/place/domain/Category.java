@@ -16,4 +16,26 @@ public enum Category {
         this.name = name;
     }
 
+    //구글 -> 카카오 카테고리 변환 메서드
+    public Category convertCategoryGoogleToKakao(String category) {
+        if (category.equals("cafe")) {
+            return Category.CAFE;
+        }
+        if (category.equals("restaurant")) {
+            return Category.RESTAURANT;
+        }
+        if (category.equals("tourist_attraction")) {
+            return Category.TOURIST_ATTRACTION;
+        }
+        if (isCultureFacility(category)) {
+            return Category.CULTURE_FACILITY;
+        }
+        if (category.equals("gas_station")) {
+            return Category.GAS_STATION;
+        }
+        if (category.equals("parking")) {
+            return Category.PARKING_LOT;
+        }
+        throw new IllegalArgumentException("해당하는 카테고리는 존재하지 않습니다.");
+    }
 }
