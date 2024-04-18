@@ -7,6 +7,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +44,10 @@ public class Place {
 
     @Column(name = "y", nullable = false)
     private Double y;
+
+    @Column(name = "website_uri", nullable = false)
+    private URI websiteUri;
+
 
     public static Place createPlace(
             List<Event> events,
