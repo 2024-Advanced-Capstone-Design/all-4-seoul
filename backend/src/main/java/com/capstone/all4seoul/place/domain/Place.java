@@ -2,7 +2,6 @@ package com.capstone.all4seoul.place.domain;
 
 import com.capstone.all4seoul.event.domain.Event;
 import com.capstone.all4seoul.review.domain.Review;
-import com.capstone.all4seoul.user.domain.User;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -23,10 +22,6 @@ public class Place {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "place_id", nullable = false)
     private Long id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
 
     @OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
     private List<Event> events;
@@ -50,7 +45,6 @@ public class Place {
     private Double y;
 
     public static Place createPlace(
-            User user,
             List<Event> events,
             String name,
             List<Review> reviews,
@@ -61,7 +55,6 @@ public class Place {
     ) {
         Place place = new Place();
 
-        place.setUser(user);
         place.events = events;
         place.name = name;
         place.reviews = reviews;
