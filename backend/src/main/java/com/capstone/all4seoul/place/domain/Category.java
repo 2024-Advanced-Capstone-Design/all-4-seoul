@@ -38,4 +38,18 @@ public enum Category {
         }
         throw new IllegalArgumentException("해당하는 카테고리는 존재하지 않습니다.");
     }
+    //주어진 카테고리가 문화시설 하위에 속하는지 여부 확인
+    private static boolean isCultureFacility(String category) {
+        return category.equals("amusement_park")
+                || category.equals("aquarium")
+                || category.equals("art_gallery")
+                || category.equals("campground")
+                || category.equals("library")
+                || category.equals("movie_theater")
+                || category.equals("museum")
+                || category.equals("department_store")
+                || category.equals("stadium")
+                || category.equals("shopping_mall")
+                || category.equals("spa");
+    }
 }
