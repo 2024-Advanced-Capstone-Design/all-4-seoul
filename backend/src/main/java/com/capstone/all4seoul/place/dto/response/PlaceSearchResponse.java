@@ -32,15 +32,15 @@ public class PlaceSearchResponse {
     @NoArgsConstructor
     @AllArgsConstructor
     static class DisplayName {
-        String text;
-        String languageCode;
+        private String text;
+        private String languageCode;
     }
 
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
     static class CurrentOpeningHours {
-        Boolean openNow;
+        private Boolean openNow;
         private Periods periods;
     }
 
@@ -109,8 +109,8 @@ public class PlaceSearchResponse {
     @NoArgsConstructor
     @AllArgsConstructor
     static class Date {
-        String year;
-        String month;
-        String day;
+        private String year;
+        private String month;
+        private String day;
     }
 }
