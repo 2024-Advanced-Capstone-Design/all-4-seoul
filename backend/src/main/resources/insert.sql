@@ -7,9 +7,10 @@ values (2, 'lbittany1@ftc.gov', 'jS1#`89eGg8%OesC', 'Thaddus McCullouch', '2023-
         'Male', 'Laurie Bittany');
 
 -- places 테이블에 더미 데이터 추가
-INSERT INTO places (place_id, user_id, phone_number, address, x, y, DTYPE, name)
-VALUES (1, 1, '01012345678', '광교산로 뭐시기', '127.002', '37.002', 'place', 'Place One'),
-       (2, 2, '01087654321', '보정로 30', '127.002', '37.003', 'place', 'Place Two');
+INSERT INTO places (place_id, name, phone_number, address, x, y, DTYPE, website_uri, category)
+VALUES (1, 'Place One', '01012345678', '광교산로 뭐시기', 127.002, 37.002, 'place', 'https://www.example.com/place1', 'PARKING_LOT'),
+       (2, 'Place Two', '01087654321', '보정로 30', 127.002, 37.003, 'place', 'https://www.example.com/place2', 'PARKING_LOT');
+
 
 -- events 테이블에 더미 데이터 추가
 INSERT INTO events (event_id, name, start_date, end_date, price, place_id, x, y)
