@@ -1,6 +1,5 @@
 package com.capstone.all4seoul.user.domain;
 
-import com.capstone.all4seoul.place.domain.Place;
 import com.capstone.all4seoul.review.domain.Review;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -49,11 +48,6 @@ public class User {
     //    @OneToMany(mappedBy = "user")
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Review> reviews = new ArrayList<>();
-
-    // 북마크
-//    @OneToMany(mappedBy = "user")
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Place> places = new ArrayList<>();
 
     public static User createUser(
             String loginId,
