@@ -15,7 +15,7 @@ public class PlaceSearchRequest {
     private List<String> includedTypes;
     private int maxResultCount;
     private LocationRestriction locationRestriction;
-}
+    private String languageCode;
 
     @Getter
     @Setter
