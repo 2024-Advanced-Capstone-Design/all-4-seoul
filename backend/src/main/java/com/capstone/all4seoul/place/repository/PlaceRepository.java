@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface PlaceRepository extends JpaRepository<Place, Long> {
     List<Place> findAll();
-    List<Place> findListByUserId(Long userId);
     List<Place> findByName(String name);
     void deleteById(Long placeId);
 }
