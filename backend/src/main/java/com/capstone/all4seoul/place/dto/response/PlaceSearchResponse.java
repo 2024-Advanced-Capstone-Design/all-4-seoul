@@ -12,20 +12,18 @@ import java.util.List;
 @AllArgsConstructor
 public class PlaceSearchResponse {
 
-    private List<Result> results;
+    private List<Result> places;
 
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
     public static class Result {
-        private DisplayName displayName;
-        private String placeId;
-        private CurrentOpeningHours currentOpeningHours;
-        private String nationalPhoneNumber;
-        private Reviews reviews;
-        //총 별점 평균
+        private String id;
         private Double rating;
         private URI websiteUri;
+        private DisplayName displayName;
+        private CurrentOpeningHours currentOpeningHours;
+        private List<Review> reviews;
     }
 
     @Getter
@@ -41,18 +39,16 @@ public class PlaceSearchResponse {
     @AllArgsConstructor
     static class CurrentOpeningHours {
         private Boolean openNow;
-        private Periods periods;
+        private List<Period> periods;
+        private List<String> weekdayDescriptions;
     }
 
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    static class Reviews {
-        //리뷰 고유 url
+    static class Review {
         private String name;
-        //몇달전
         private String relativePublishTimeDescription;
-        //별점
         private Double rating;
         private Text text;
         private Text originalText;
@@ -73,14 +69,14 @@ public class PlaceSearchResponse {
     @AllArgsConstructor
     static class AuthorAttribution {
         private String displayName;
-        private String uri;
-        private String photoUri;
+        private URI uri;
+        private URI photoUri;
     }
 
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    static class Periods{
+    static class Period {
         private Open open;
         private Close close;
     }
