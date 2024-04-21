@@ -18,7 +18,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -55,8 +54,8 @@ public class Place {
     @Column(name = "y", nullable = false)
     private Double y;
 
-    @Column(name = "website_uri", nullable = true, columnDefinition = "VARCHAR(255)")
-    private URI websiteUri;
+    @Column(name = "website_uri", nullable = true)
+    private String websiteUri;
 
     @Column(name = "category", nullable = true)
     @Enumerated(EnumType.STRING)
@@ -66,6 +65,7 @@ public class Place {
     private Set<Bookmark> bookmarks = new HashSet<>();
 
     public static Place createPlace(
+
             List<Event> events,
             String name,
             List<Review> reviews,
@@ -83,6 +83,8 @@ public class Place {
         place.address = address;
         place.x = x;
         place.y = y;
+        place.websiteUri = "http://www.naver.com";
+        place.category = Category.CAFE;
 
         return place;
     }
