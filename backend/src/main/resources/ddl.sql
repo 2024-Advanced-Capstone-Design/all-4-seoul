@@ -37,7 +37,6 @@ CREATE TABLE places
     address      VARCHAR(255) NOT NULL,
     x            DOUBLE       NOT NULL,
     y            DOUBLE       NOT NULL,
-    DTYPE        VARCHAR(31)  NOT NULL,
     website_uri  VARCHAR(255) NOT NULL,
     category     ENUM ('PARKING_LOT',
         'GAS_STATION',
