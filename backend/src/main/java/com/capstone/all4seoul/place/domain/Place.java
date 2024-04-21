@@ -35,7 +35,7 @@ public class Place {
     private Long id;
 
     @OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
-    private List<Event> events;
+    private List<Event> events = new ArrayList<>();
 
     @Column(name = "name", nullable = false, length = 100)
     private String name;
