@@ -57,7 +57,7 @@ public class User {
     @Column(name = "credit")
     private int credit;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Review> reviews = new ArrayList<>();
 
     @Embedded
