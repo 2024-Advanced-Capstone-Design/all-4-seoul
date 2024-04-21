@@ -4,7 +4,6 @@ import com.capstone.all4seoul.user.domain.Gender;
 import com.capstone.all4seoul.user.domain.Mbti;
 import com.capstone.all4seoul.user.domain.User;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
