@@ -5,10 +5,11 @@ import com.capstone.all4seoul.place.dto.response.DetailPlaceResponse;
 import com.capstone.all4seoul.place.dto.response.PlaceSearchResponse;
 import com.capstone.all4seoul.place.service.PlaceService;
 import com.capstone.all4seoul.place.service.PlaceServiceByGoogle;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
