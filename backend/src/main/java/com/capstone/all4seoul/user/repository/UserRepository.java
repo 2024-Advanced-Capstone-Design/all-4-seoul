@@ -13,7 +13,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
      */
 
     //로그인 아이디로 조회
-    User findByLoginId(@Param("id") String loginId);
+    User findByLoginId(String loginId);
 
     //컬렉션 조회
     List<User> findListByUsername(String username);
