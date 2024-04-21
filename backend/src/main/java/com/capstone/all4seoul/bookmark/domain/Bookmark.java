@@ -36,8 +36,8 @@ public class Bookmark {
     public static Bookmark createBookmark(User user, Place place) {
         Bookmark bookmark = new Bookmark();
 
-        bookmark.user = user;
-        bookmark.place = place;
+        bookmark.setUser(user);
+        bookmark.setPlace(place);
 
         return bookmark;
     }
@@ -48,6 +48,10 @@ public class Bookmark {
     public void setUser(User user) {
         this.user = user;
         user.getBookmarks().addBookmark(this);
+    }
+
+    public void setPlace(Place place) {
+        this.place = place;
     }
 
     public boolean isBookmarkOf(Place place) {
