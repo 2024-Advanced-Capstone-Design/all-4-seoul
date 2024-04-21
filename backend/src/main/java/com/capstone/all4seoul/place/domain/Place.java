@@ -1,5 +1,6 @@
 package com.capstone.all4seoul.place.domain;
 
+import com.capstone.all4seoul.bookmark.domain.Bookmark;
 import com.capstone.all4seoul.event.domain.Event;
 import com.capstone.all4seoul.review.domain.Review;
 import jakarta.persistence.CascadeType;
@@ -17,7 +18,9 @@ import lombok.NoArgsConstructor;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -56,6 +59,9 @@ public class Place {
     @Column(name = "category", nullable = true)
     @Enumerated(EnumType.STRING)
     private Category category;
+
+    @OneToMany(mappedBy = "place", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Bookmark> bookmarks = new HashSet<>();
 
     public static Place createPlace(
             List<Event> events,
