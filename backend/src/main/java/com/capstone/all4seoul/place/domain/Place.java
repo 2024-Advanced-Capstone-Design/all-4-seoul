@@ -27,9 +27,6 @@ import java.util.List;
 @Getter
 @Table(name = "places")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "DTYPE") //하위 테이블 구분 칼럼
-@DiscriminatorValue("place")
 public class Place {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
