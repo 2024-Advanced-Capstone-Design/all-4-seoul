@@ -40,20 +40,20 @@ public class DetailEventResponse {
     @Getter
     @NoArgsConstructor(access = AccessLevel.PRIVATE)
     public static class EventPlaceInfo {
-        private String placeName;
-        private String placePhoneNumber;
-        private String placeAddress;
-        private Double placeX;
-        private Double placeY;
+        private String name;
+        private String phoneNumber;
+        private String address;
+        private Double x;
+        private Double y;
 
         public static EventPlaceInfo of(Place place) {
             EventPlaceInfo eventPlaceInfo = new EventPlaceInfo();
 
-            eventPlaceInfo.placeName = place.getName();
-            eventPlaceInfo.placePhoneNumber = place.getPhoneNumber();
-            eventPlaceInfo.placeAddress = place.getAddress();
-            eventPlaceInfo.placeX = place.getX();
-            eventPlaceInfo.placeY = place.getY();
+            eventPlaceInfo.name = place.getName();
+            eventPlaceInfo.phoneNumber = place.getPhoneNumber();
+            eventPlaceInfo.address = place.getAddress();
+            eventPlaceInfo.x = place.getX();
+            eventPlaceInfo.y = place.getY();
 
             return eventPlaceInfo;
         }
