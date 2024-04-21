@@ -1,15 +1,13 @@
-# -- 테이블 삭제 전 외래 키 제약 조건 삭제
-# ALTER TABLE bookmarks DROP FOREIGN KEY FK_bookmarks_users;
-# ALTER TABLE bookmarks DROP FOREIGN KEY FK_bookmarks_places;
-# ALTER TABLE events DROP FOREIGN KEY FK_events_places;
-# ALTER TABLE parking_lot DROP FOREIGN KEY FK_parking_lot_places;
-# ALTER TABLE reviews DROP FOREIGN KEY FK_reviews_users;
-# ALTER TABLE reviews DROP FOREIGN KEY FK_reviews_places;
-# ALTER TABLE reviews DROP FOREIGN KEY FK_reviews_events;
+-- 테이블 삭제 전 외래 키 제약 조건 삭제
+ALTER TABLE bookmarks DROP FOREIGN KEY FK_bookmarks_users;
+ALTER TABLE bookmarks DROP FOREIGN KEY FK_bookmarks_places;
+ALTER TABLE events DROP FOREIGN KEY FK_events_places;
+ALTER TABLE reviews DROP FOREIGN KEY FK_reviews_users;
+ALTER TABLE reviews DROP FOREIGN KEY FK_reviews_places;
+ALTER TABLE reviews DROP FOREIGN KEY FK_reviews_events;
 
 -- 테이블 삭제
 DROP TABLE IF EXISTS reviews;
-DROP TABLE IF EXISTS parking_lot;
 DROP TABLE IF EXISTS events;
 DROP TABLE IF EXISTS bookmarks;
 DROP TABLE IF EXISTS places;
@@ -38,26 +36,22 @@ CREATE TABLE places
     x            DOUBLE       NOT NULL,
     y            DOUBLE       NOT NULL,
     website_uri  VARCHAR(255) NOT NULL,
-    category     ENUM ('PARKING_LOT',
-        'GAS_STATION',
-        'CULTURE_FACILITY',
-        'TOURIST_ATTRACTION',
-        'RESTAURANT',
-        'CAFE')               NOT NULL,
+    category     ENUM('PARKING_LOT', 'GAS_STATION', 'CULTURE_FACILITY', 'TOURIST_ATTRACTION', 'RESTAURANT', 'CAFE') NOT NULL,
     PRIMARY KEY (place_id)
 ) ENGINE = InnoDB;
 
-CREATE TABLE bookmarks (
-                           bookmark_id BIGINT NOT NULL AUTO_INCREMENT,
-                           user_id BIGINT NOT NULL,
-                           place_id BIGINT NOT NULL,
-                           PRIMARY KEY (bookmark_id),
-                           CONSTRAINT FK_bookmarks_users FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
-                           CONSTRAINT FK_bookmarks_places FOREIGN KEY (place_id) REFERENCES places(place_id) ON DELETE CASCADE,
-                           UNIQUE (user_id, place_id)
-) ENGINE=InnoDB;
+CREATE TABLE bookmarks
+(
+    bookmark_id BIGINT NOT NULL AUTO_INCREMENT,
+    user_id     BIGINT NOT NULL,
+    place_id    BIGINT NOT NULL,
+    PRIMARY KEY (bookmark_id),
+    CONSTRAINT FK_bookmarks_users FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE,
+    CONSTRAINT FK_bookmarks_places FOREIGN KEY (place_id) REFERENCES places (place_id) ON DELETE CASCADE,
+    UNIQUE (user_id, place_id)
+) ENGINE = InnoDB;
 
--- 이어서 events, parking_lot, reviews 테이블 생성
+-- 이어서 events, reviews 테이블 생성
 CREATE TABLE events
 (
     event_id   BIGINT       NOT NULL AUTO_INCREMENT,
@@ -70,18 +64,6 @@ CREATE TABLE events
     price      INTEGER      NOT NULL,
     PRIMARY KEY (event_id),
     CONSTRAINT FK_events_places FOREIGN KEY (place_id) REFERENCES places (place_id)
-) ENGINE = InnoDB;
-
-CREATE TABLE parking_lot
-(
-    place_id   BIGINT NOT NULL,
-    add_rates  VARCHAR(255),
-    capacity   VARCHAR(255),
-    etc        VARCHAR(255),
-    price      VARCHAR(255),
-    time_rates VARCHAR(255),
-    PRIMARY KEY (place_id),
-    CONSTRAINT FK_parking_lot_places FOREIGN KEY (place_id) REFERENCES places (place_id)
 ) ENGINE = InnoDB;
 
 CREATE TABLE reviews
