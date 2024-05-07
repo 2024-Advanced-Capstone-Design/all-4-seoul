@@ -9,9 +9,9 @@ url = 'https://map.kakao.com/'
 driver = webdriver.Chrome()  # 드라이버 경로
 driver.get(url)
 
-searchloc = ['서초구 맛집',  '강동구 맛집']
+searchloc = ['강남구 카페',  '강동구 카페', '종로구 카페', '중구 카페', '용산구 카페', '성동구 카페', '광진구 카페', '동대문구 카페', '중랑구 카페', '성북구 카페', '강북구 카페', '도봉구 카페', '노원구 카페', '은평구 카페', '서대문구 카페', '마포구 카페', '양천구 카페', '강서구 카페', '구로구 카페', '금천구 카페', '영등포구 카페', '동작구 카페', '관악구 카페', '서초구 카페', '강남구 카페', '송파구 카페', '강동구 카페']
 
-#'종로구 맛집', '중구 맛집', '용산구 맛집', '성동구 맛집', '광진구 맛집', '동대문구 맛집', '중랑구 맛집', '성북구 맛집', '강북구 맛집', '도봉구 맛집', '노원구 맛집', '은평구 맛집', '서대문구 맛집', '마포구 맛집', '양천구 맛집', '강서구 맛집', '구로구 맛집', '금천구 맛집', '영등포구 맛집', '동작구 맛집', '관악구 맛집', '서초구 맛집', '강남구 맛집', '송파구 맛집', '강동구 맛집'
+#'종로구 카페', '중구 카페', '용산구 맛집', '성동구 맛집', '광진구 맛집', '동대문구 맛집', '중랑구 맛집', '성북구 맛집', '강북구 맛집', '도봉구 맛집', '노원구 맛집', '은평구 맛집', '서대문구 맛집', '마포구 맛집', '양천구 맛집', '강서구 맛집', '구로구 맛집', '금천구 맛집', '영등포구 맛집', '동작구 맛집', '관악구 맛집', '서초구 맛집', '강남구 맛집', '송파구 맛집', '강동구 맛집'
 #', 
 for loc in searchloc:
     # 음식점 입력 후 찾기 버튼 클릭 
@@ -50,7 +50,7 @@ for loc in searchloc:
             list.append(temp)
 
         if page == 1:
-            with open('store_list_{}.csv'.format(loc), 'w', encoding='utf-8-sig', newline='') as f:
+            with open('D:/대학교/2024-1학기/심화캡스톤/Crawling/카페 크롤링/store_list_{}.csv'.format(loc), 'w', encoding='utf-8-sig', newline='') as f:
                 writercsv = csv.writer(f)
                 header = ['name', 'degree', 'address', 'tel']
                 writercsv.writerow(header)
@@ -59,7 +59,7 @@ for loc in searchloc:
                     writercsv.writerow(i)
         else:   
             # 파일이 이미 존재하므로, 존재하는 파일에 이어서 쓰기 
-            with open('store_list_{}.csv'.format(loc), 'a', encoding='utf-8-sig', newline='') as f:
+            with open('D:/대학교/2024-1학기/심화캡스톤/Crawling/카페 크롤링/store_list_{}.csv'.format(loc), 'a', encoding='utf-8-sig', newline='') as f:
                 writercsv = csv.writer(f)
 
                 for i in list:
