@@ -27,4 +27,13 @@ public class LoginController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인 실패");
     }
 
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+            return ResponseEntity.ok("로그아웃 성공");
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그아웃 실패");
+    }
 }
