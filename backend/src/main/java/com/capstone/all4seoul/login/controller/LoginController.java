@@ -6,7 +6,9 @@ import com.capstone.all4seoul.user.domain.User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpCookie;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +24,14 @@ public class LoginController {
         if (user != null) {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
-            return ResponseEntity.ok("로그인 성공");
+            HttpCookie cookie = ResponseCookie.from("sessionId", session.getId())
+                    .httpOnly(true) //클라이언트 스크립트에서 쿠키 설정 불가능
+                    .path("/") //모든 경로에 접근 가능
+                    .maxAge(1800) // 30분
+                    .build();
+            return ResponseEntity.ok()
+                    .header("Set-Cookie", cookie.toString()) //쿠키를 응답헤더에 추가
+                    .body("로그인 성공");
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인 실패");
     }
