@@ -41,73 +41,75 @@ function ChangeInfoPage() {
           내 정보 변경하기
         </h2>
         <form
-          className="mt-6 w-full table-fixed text-lg"
+          className="w-full table-fixed p-6"
           onSubmit={handleSubmit(onSubmit)}
         >
           {currentUser && (
             <>
-              <IdInput
-                register={register}
-                errors={errors}
-                defaultValue={currentUser.id}
-                disabled
-              />
-              <NameInput
-                register={register}
-                errors={errors}
-                defaultValue={currentUser.name}
-                disabled
-              />
-              <PasswordInput
-                register={register}
-                errors={errors}
-                defaultValue={currentUser.password}
-              />
-              <PasswordConfirmInput
-                register={register}
-                errors={errors}
-                getValues={getValues}
-              />
-              <DateInput
-                id="birth"
-                label="Birth"
-                placeholder="생년월일을 입력해주세요."
-                control={control}
-                defaultValue={new Date(currentUser.birth)}
-              />
-              <Option
-                label="MBTI"
-                id="mbti"
-                register={register}
-                defaultValue={currentUser.mbti}
-              >
-                <option value="ISTJ">ISTJ</option>
-                <option value="ISFJ">ISFJ</option>
-                <option value="INFJ">INFJ</option>
-                <option value="INTJ">INTJ</option>
-                <option value="ISTP">ISTP</option>
-                <option value="ISFP">ISFP</option>
-                <option value="INFP">INFP</option>
-                <option value="INTP">INTP</option>
-                <option value="ESTP">ESTP</option>
-                <option value="ESFP">ESFP</option>
-                <option value="ENFP">ENFP</option>
-                <option value="ENTP">ENTP</option>
-                <option value="ESTJ">ESTJ</option>
-                <option value="ESFJ">ESFJ</option>
-                <option value="ENFJ">ENFJ</option>
-                <option value="ENTJ">ENTJ</option>
-              </Option>
-              <Option
-                label="Gender"
-                id="gender"
-                register={register}
-                defaultValue={currentUser.gender}
-              >
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </Option>
-              <div className="flex justify-center border-b py-3">
+              <div className="rounded-xl border p-4 shadow-lg">
+                <IdInput
+                  register={register}
+                  errors={errors}
+                  defaultValue={currentUser.id}
+                  disabled
+                />
+                <NameInput
+                  register={register}
+                  errors={errors}
+                  defaultValue={currentUser.name}
+                  disabled
+                />
+                <PasswordInput
+                  register={register}
+                  errors={errors}
+                  defaultValue={currentUser.password}
+                />
+                <PasswordConfirmInput
+                  register={register}
+                  errors={errors}
+                  getValues={getValues}
+                />
+                <DateInput
+                  id="birth"
+                  label="Birth"
+                  placeholder="생년월일을 입력해주세요."
+                  control={control}
+                  defaultValue={new Date(currentUser.birth)}
+                />
+                <Option
+                  label="MBTI"
+                  id="mbti"
+                  register={register}
+                  defaultValue={currentUser.mbti}
+                >
+                  <option value="ISTJ">ISTJ</option>
+                  <option value="ISFJ">ISFJ</option>
+                  <option value="INFJ">INFJ</option>
+                  <option value="INTJ">INTJ</option>
+                  <option value="ISTP">ISTP</option>
+                  <option value="ISFP">ISFP</option>
+                  <option value="INFP">INFP</option>
+                  <option value="INTP">INTP</option>
+                  <option value="ESTP">ESTP</option>
+                  <option value="ESFP">ESFP</option>
+                  <option value="ENFP">ENFP</option>
+                  <option value="ENTP">ENTP</option>
+                  <option value="ESTJ">ESTJ</option>
+                  <option value="ESFJ">ESFJ</option>
+                  <option value="ENFJ">ENFJ</option>
+                  <option value="ENTJ">ENTJ</option>
+                </Option>
+                <Option
+                  label="Gender"
+                  id="gender"
+                  register={register}
+                  defaultValue={currentUser.gender}
+                >
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </Option>
+              </div>
+              <div className="my-3 flex justify-center border-b py-3">
                 <SubmitButton text="정보 변경" />
               </div>
             </>
