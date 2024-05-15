@@ -1,18 +1,9 @@
 import axios from 'axios';
 
-export async function getUserInfo(userId) {
-  const sessionId = document.cookie
-    .split('; ')
-    .find((row) => row.startsWith('sessionId='));
-  if (!sessionId) {
-    return null;
-  }
-
+export async function getUserInfo() {
   try {
-    const response = await axios.get(`http://localhost:8080/users/${userId}`, {
-      headers: {
-        Authorization: `Bearer ${sessionId.split('=')[1]}`,
-      },
+    const response = await axios.get('http://localhost:8080/user-info', {
+      withCredentials: true // 쿠키를 자동으로 포함하여 요청합니다.
     });
     return response.data;
   } catch (error) {
