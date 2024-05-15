@@ -4,8 +4,6 @@ import { getUserInfo } from '../../lib/get-user-info'; // Importing getUserInfo 
 function MyInfoPage() {
   const [currentUser, setCurrentUser] = useState(null);
 
-  const userId = '1';
-
   useEffect(() => {
     async function fetchUserInfo() {
       const userInfo = await getUserInfo(userId);
