@@ -8,7 +8,9 @@ import com.capstone.all4seoul.user.dto.request.JoinUserRequest;
 import com.capstone.all4seoul.user.dto.request.UpdateUserRequest;
 import com.capstone.all4seoul.user.dto.response.DetailUserResponse;
 import com.capstone.all4seoul.user.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,6 +38,27 @@ public class UserController {
 
         return ResponseEntity.created(URI.create("users/" + userId)).build();
     }
+
+    @GetMapping("/user-info")
+    public ResponseEntity<DetailUserResponse> getUserInfo(HttpSession session) {
+        Long userId = (Long) session.getAttribute("userId");
+
+        if (userId == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        User user = userService.findById(userId);
+        if (user == null) {
+            // 사용자 정보가 조회되지 않은 경우
+            return ResponseEntity.notFound().build();
+        }
+
+        // 조회된 사용자 정보를 적절한 형식으로 변환하여 클라이언트에 반환
+        DetailUserResponse response = DetailUserResponse.of(user);
+
+        return ResponseEntity.ok(response);
+    }
+
 
     /**
      * 사용자 단건 조회
