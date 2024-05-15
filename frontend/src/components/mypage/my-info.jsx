@@ -6,8 +6,12 @@ function MyInfoPage() {
 
   useEffect(() => {
     async function fetchUserInfo() {
-      const userInfo = await getUserInfo(userId);
-      setCurrentUser(userInfo);
+      try {
+        const userInfo = await getUserInfo(); // getUserInfo 함수를 사용하여 사용자 정보를 가져옵니다.
+        setCurrentUser(userInfo);
+      } catch (error) {
+        console.error('사용자 정보를 가져오는 데 실패했습니다.', error);
+      }
     }
     fetchUserInfo();
   }, []);
