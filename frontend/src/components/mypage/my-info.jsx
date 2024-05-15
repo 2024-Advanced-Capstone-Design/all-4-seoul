@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
-import { getUserInfo } from '../../lib/get-user-info';
+import { getUserInfo } from '../../lib/get-user-info'; // Importing getUserInfo function
 
 function MyInfoPage() {
   const [currentUser, setCurrentUser] = useState(null);
