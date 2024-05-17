@@ -9,25 +9,33 @@ url = 'https://map.kakao.com/'
 driver = webdriver.Chrome()  # 드라이버 경로
 driver.get(url)
 
-searchloc = ['서울 강남구 문화시설', '서울 강동구 문화시설', '서울 종로구 문화시설', '서울 중구 문화시설', '서울 용산구 문화시설', '서울 성동구 문화시설', '서울 광진구 문화시설', '서울 동대문구 문화시설', '서울 중랑구 문화시설', '서울 성북구 문화시설', '서울 강북구 문화시설', '서울 도봉구 문화시설', '서울 노원구 문화시설', '서울 은평구 문화시설', '서울 서대문구 문화시설', '서울 마포구 문화시설', '서울 양천구 문화시설', '서울 강서구 문화시설', '서울 구로구 문화시설', '서울 금천구 문화시설', '서울 영등포구 문화시설', '서울 동작구 문화시설', '서울 관악구 문화시설', '서울 서초구 문화시설', '서울 송파구 문화시설']
+searchloc = [
+   '서울 금천구 관광명소'
+]
 
 
-#'종로구 문화시설', '중구 문화시설', '용산구 문화시설', '성동구 문화시설', '광진구 문화시설', '동대문구 문화시설', '중랑구 문화시설', '성북구 문화시설', '강북구 문화시설', '도봉구 문화시설', '노원구 문화시설', '은평구 문화시설', '서대문구 문화시설', '마포구 문화시설', '양천구 문화시설', '강서구 문화시설', '구로구 문화시설', '금천구 문화시설', '영등포구 문화시설', '동작구 문화시설', '관악구 문화시설', '서초구 문화시설', '강남구 문화시설', '송파구 문화시설', '강동구 문화시설'
-#', 
+# '서울 강동구 관광명소', '서울 종로구 관광명소', 
+#              '서울 중구 관광명소', '서울 용산구 관광명소', '서울 성동구 관광명소', 
+#              '서울 광진구 관광명소', '서울 동대문구 관광명소', '서울 중랑구 관광명소', 
+#              '서울 성북구 관광명소', '서울 강북구 관광명소', '서울 도봉구 관광명소',
 for loc in searchloc:
     # 음식점 입력 후 찾기 버튼 클릭 
     search_area = driver.find_element(By.XPATH, '//*[@id="search.keyword.query"]')   # 검색창
     search_area.clear()  # 검색창 내용 지우기
     search_area.send_keys(loc)
     driver.find_element(By.XPATH, '//*[@id="search.keyword.submit"]').send_keys(Keys.ENTER)
+    search_area.clear()  # 검색창 내용 지우기
     time.sleep(2)
-    
+
+
 
     # 장소 버튼 클릭 
     driver.find_element(By.XPATH, '//*[@id="info.main.options"]/li[2]/a').send_keys(Keys.ENTER)
     time.sleep(2)
-    driver.find_element(By.XPATH, '//*[@class="link_search"]').send_keys(Keys.ENTER)
-    time.sleep(2)
+    # #재검색
+    # driver.find_element(By.CSS_SELECTOR, 'div.line > .link_search').send_keys(Keys.ENTER)
+    # time.sleep(2)
+    
     def storeNamePrint(page):
         time.sleep(0.2)
 
@@ -54,7 +62,7 @@ for loc in searchloc:
             list.append(temp)
 
         if page == 1:
-            with open('D:/대학교/2024-1학기/심화캡스톤/Crawling/문화시설 크롤링/store_list_{}.csv'.format(loc), 'w', encoding='utf-8-sig', newline='') as f:
+            with open('D:/대학교/2024-1학기/심화캡스톤/Crawling/관광명소 크롤링/store_list_{}.csv'.format(loc), 'w', encoding='utf-8-sig', newline='') as f:
                 writercsv = csv.writer(f)
                 header = ['name', 'degree', 'address', 'tel']
                 writercsv.writerow(header)
@@ -63,7 +71,7 @@ for loc in searchloc:
                     writercsv.writerow(i)
         else:   
             # 파일이 이미 존재하므로, 존재하는 파일에 이어서 쓰기 
-            with open('D:/대학교/2024-1학기/심화캡스톤/Crawling/문화시설 크롤링/store_list_{}.csv'.format(loc), 'a', encoding='utf-8-sig', newline='') as f:
+            with open('D:/대학교/2024-1학기/심화캡스톤/Crawling/관광명소 크롤링/store_list_{}.csv'.format(loc), 'a', encoding='utf-8-sig', newline='') as f:
                 writercsv = csv.writer(f)
 
                 for i in list:
