@@ -31,7 +31,7 @@ CREATE TABLE places
 (
     place_id     BIGINT       NOT NULL AUTO_INCREMENT,
     name         VARCHAR(100) NOT NULL,
-    phone_number VARCHAR(11)  NOT NULL UNIQUE,
+    phone_number VARCHAR(20)  NOT NULL,
     address      VARCHAR(255) NOT NULL,
     x            DOUBLE       NOT NULL,
     y            DOUBLE       NOT NULL,
