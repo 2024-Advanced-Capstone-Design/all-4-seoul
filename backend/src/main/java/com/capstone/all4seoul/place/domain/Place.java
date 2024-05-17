@@ -72,7 +72,8 @@ public class Place {
             String phoneNumber,
             String address,
             Double x,
-            Double y
+            Double y,
+            Category category
     ) {
         Place place = new Place();
 
@@ -83,8 +84,8 @@ public class Place {
         place.address = address;
         place.x = x;
         place.y = y;
-        place.websiteUri = "http://www.naver.com";
-        place.category = Category.CAFE;
+        place.websiteUri = null;
+        place.category = category;
 
         return place;
     }
