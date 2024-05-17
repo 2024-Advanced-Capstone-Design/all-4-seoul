@@ -35,7 +35,7 @@ CREATE TABLE places
     address      VARCHAR(255) NOT NULL,
     x            DOUBLE       NOT NULL,
     y            DOUBLE       NOT NULL,
-    website_uri  VARCHAR(255) NOT NULL,
+    website_uri  VARCHAR(255),
     category     ENUM('PARKING_LOT', 'GAS_STATION', 'CULTURE_FACILITY', 'TOURIST_ATTRACTION', 'RESTAURANT', 'CAFE') NOT NULL,
     PRIMARY KEY (place_id)
 ) ENGINE = InnoDB;
