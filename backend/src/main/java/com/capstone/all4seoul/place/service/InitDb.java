@@ -52,5 +52,60 @@ public class InitDb {
             }
         }
 
+        /**
+         * 주어진 CSV 파일에서 데이터를 로드하고 처리하는 메서드
+         */
+        private void loadPlacesFromCsv(String csvFile) {
+            try {
+                ClassPathResource resource = new ClassPathResource(csvFile);
+                if (!resource.exists()) {
+                    log.warn("CSV file not found: {}", csvFile);
+                    return;
+                }
+
+                // 파일 이름에서 카테고리 추출
+                String categoryName = String.valueOf(getCategoryFromFileName(csvFile));
+
+                // 파일 이름에 해당하는 Kakao 카테고리로 변환
+                Category category = Category.valueOf(categoryName.toUpperCase());
+
+                try (Reader reader = new BufferedReader(new InputStreamReader(resource.getInputStream(), StandardCharsets.UTF_8));
+                     CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withFirstRecordAsHeader())) {
+
+                    List<Place> places = new ArrayList<>();
+                    for (CSVRecord csvRecord : csvParser) {
+                        String name = csvRecord.get(0);
+                        String degree = csvRecord.get(1); // 필요시 사용
+                        String address = csvRecord.get(2);
+                        String tel = csvRecord.get(3);
+
+                        // Placeholder for x and y coordinates
+                        double x = 0.0; // 실제 데이터로 대체 필요
+                        double y = 0.0; // 실제 데이터로 대체 필요
+
+                        Place place = Place.createPlace(
+                                new ArrayList<>(), // 초기 이벤트 리스트
+                                name,
+                                new ArrayList<>(), // 초기 리뷰 리스트
+                                tel,
+                                address,
+                                x,
+                                y,
+                                category
+                        );
+
+                        places.add(place);
+                        log.info("Loaded place: {}", place);
+                    }
+
+                    placeRepository.saveAll(places);
+                    log.info("All places saved successfully from CSV: {}", csvFile);
+                }
+            } catch (Exception e) {
+                log.error("Error reading CSV file: {}", csvFile, e);
+            }
+        }
+
+
     }
 }
