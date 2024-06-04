@@ -18,6 +18,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -36,16 +38,16 @@ public class PlaceServiceByExternalApi {
         headers.set("X-Goog-Api-Key", googleApiKey);
         headers.set("X-Goog-FieldMask",
                 "places.displayName," +
-                "places.formattedAddress," +
-                "places.location,places." +
-                "photos,places.types," +
-                "places.nationalPhoneNumber," +
-                "places.regularOpeningHours," +
-                "places.priceLevel," +
-                "places.rating," +
-                "places.userRatingCount," +
-                "places.websiteUri," +
-                "places.reviews");
+                        "places.formattedAddress," +
+                        "places.location,places." +
+                        "photos,places.types," +
+                        "places.nationalPhoneNumber," +
+                        "places.regularOpeningHours," +
+                        "places.priceLevel," +
+                        "places.rating," +
+                        "places.userRatingCount," +
+                        "places.websiteUri," +
+                        "places.reviews");
 
         PlaceSearchRequestWithTextQueryByGoogle request = new PlaceSearchRequestWithTextQueryByGoogle(textQuery, "ko", 1);
         HttpEntity<PlaceSearchRequestWithTextQueryByGoogle> requestEntity = new HttpEntity<>(request, headers);
@@ -59,18 +61,22 @@ public class PlaceServiceByExternalApi {
         );
 
         // HTTP 요청 보내기
-        responseEntity.getBody().getPlaces().get(0).getPhotos()
-                .forEach(photo -> {
-                    String photoUrl = "https://places.googleapis.com/v1/" + photo.getName() + "/media?maxHeightPx=4800&maxWidthPx=4800&key=" + googleApiKey + "&skipHttpRedirect=true";
+        if (responseEntity.getBody().getPlaces().get(0).getPhotos() == null) {
+            responseEntity.getBody().getPlaces().get(0).setPhotos(new ArrayList<>());
+        } else {
+            responseEntity.getBody().getPlaces().get(0).getPhotos()
+                    .forEach(photo -> {
+                        String photoUrl = "https://places.googleapis.com/v1/" + photo.getName() + "/media?maxHeightPx=4800&maxWidthPx=4800&key=" + googleApiKey + "&skipHttpRedirect=true";
 
-                    ResponseEntity<PlaceImageSearchResponseByGoogle> photoUrlResponse = new RestTemplate().exchange(
-                            photoUrl,
-                            HttpMethod.GET,
-                            new HttpEntity<>(new HttpHeaders()),
-                            PlaceImageSearchResponseByGoogle.class
-                    );
-                    photo.setPhotoUri(photoUrlResponse.getBody().getPhotoUri());
-                });
+                        ResponseEntity<PlaceImageSearchResponseByGoogle> photoUrlResponse = new RestTemplate().exchange(
+                                photoUrl,
+                                HttpMethod.GET,
+                                new HttpEntity<>(new HttpHeaders()),
+                                PlaceImageSearchResponseByGoogle.class
+                        );
+                        photo.setPhotoUri(photoUrlResponse.getBody().getPhotoUri());
+                    });
+        }
 
         // 응답 처리
         return responseEntity.getBody();
