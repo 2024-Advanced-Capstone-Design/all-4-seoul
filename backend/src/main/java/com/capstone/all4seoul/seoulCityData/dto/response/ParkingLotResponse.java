@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ParkingLotResponse {
+    private Long id;
     private String name;
     private String code;
     private String capacity;
@@ -27,6 +28,7 @@ public class ParkingLotResponse {
     public static ParkingLotResponse of(ParkingLot parkingLot) {
         ParkingLotResponse parkingLotResponse = new ParkingLotResponse();
 
+        parkingLotResponse.id = parkingLot.getId();
         parkingLotResponse.name = parkingLot.getName();
         parkingLotResponse.code = parkingLot.getCode();
         parkingLotResponse.capacity = parkingLot.getCapacity();

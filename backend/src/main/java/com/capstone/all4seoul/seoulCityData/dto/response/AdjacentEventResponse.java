@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class AdjacentEventResponse {
+    private Long id;
     private String name;
     private String period;
     private String place;
@@ -21,6 +22,7 @@ public class AdjacentEventResponse {
     public static AdjacentEventResponse of(AdjacentEvent adjacentEvent) {
         AdjacentEventResponse response = new AdjacentEventResponse();
 
+        response.id = adjacentEvent.getId();
         response.name = adjacentEvent.getName();
         response.period = adjacentEvent.getPeriod();
         response.place = adjacentEvent.getPlace();

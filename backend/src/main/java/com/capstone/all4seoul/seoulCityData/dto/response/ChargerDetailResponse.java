@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ChargerDetailResponse {
+    private Long id;
     private String chargerId;
     private String type;
     private String status;
@@ -15,6 +16,7 @@ public class ChargerDetailResponse {
     public static ChargerDetailResponse of(ChargerStation.ChargerDetail chargerDetail) {
         ChargerDetailResponse response = new ChargerDetailResponse();
 
+        response.id = chargerDetail.getId();
         response.chargerId = chargerDetail.getChargerId();
         response.type = chargerDetail.getType();
         response.status = chargerDetail.getStatus();

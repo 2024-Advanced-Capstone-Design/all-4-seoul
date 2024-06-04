@@ -11,6 +11,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class LivePopulationStatusResponse {
+    private Long id;
     private String areaCongestLevel;
     private String areaCongestMessage;
     private String minimumAreaPopulation;
@@ -35,6 +36,7 @@ public class LivePopulationStatusResponse {
     public static LivePopulationStatusResponse of(LivePopulationStatus livePopulationStatus) {
         LivePopulationStatusResponse livePopulationStatusResponse = new LivePopulationStatusResponse();
 
+        livePopulationStatusResponse.id = livePopulationStatus.getId();
         livePopulationStatusResponse.areaCongestLevel = livePopulationStatus.getAreaCongestLevel();
         livePopulationStatusResponse.areaCongestMessage = livePopulationStatus.getAreaCongestMessage();
         livePopulationStatusResponse.minimumAreaPopulation = livePopulationStatus.getMinimumAreaPopulation();
