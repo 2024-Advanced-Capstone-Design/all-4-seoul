@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class WeatherForecastResponse {
+    private Long id;
     private String dayTime;
     private String temperature24Hour;
     private String precipitation;
@@ -18,6 +19,7 @@ public class WeatherForecastResponse {
     public static WeatherForecastResponse of(WeatherStatus.WeatherForecast weatherForecast) {
         WeatherForecastResponse response = new WeatherForecastResponse();
 
+        response.id = weatherForecast.getId();
         response.dayTime = weatherForecast.getDayTime();
         response.temperature24Hour = weatherForecast.getTemperature24Hour();
         response.precipitation = weatherForecast.getPrecipitation();

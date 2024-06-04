@@ -10,6 +10,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ChargerStationResponse {
+    private Long id;
     private String name;
     private String stationId;
     private String address;
@@ -25,6 +26,7 @@ public class ChargerStationResponse {
     public static ChargerStationResponse of(ChargerStation chargerStation) {
         ChargerStationResponse response = new ChargerStationResponse();
 
+        response.id = chargerStation.getId();
         response.name = chargerStation.getName();
         response.stationId = chargerStation.getStationId();
         response.address = chargerStation.getAddress();

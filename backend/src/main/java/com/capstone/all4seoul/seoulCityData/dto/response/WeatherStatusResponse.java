@@ -10,6 +10,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class WeatherStatusResponse {
+    private Long id;
     private String time;
     private String temperature;
     private String sensibleTemperature;
@@ -35,6 +36,7 @@ public class WeatherStatusResponse {
     public static WeatherStatusResponse of(WeatherStatus weatherStatus) {
         WeatherStatusResponse response = new WeatherStatusResponse();
 
+        response.id = weatherStatus.getId();
         response.time = weatherStatus.getTime();
         response.temperature = weatherStatus.getTemperature();
         response.sensibleTemperature = weatherStatus.getSensibleTemperature();
