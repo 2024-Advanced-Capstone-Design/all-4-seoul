@@ -15,6 +15,7 @@ public class PlaceTextSearchResponseByGoogle {
     private List<Place> places;
 
     @Getter
+    @Setter
     @NoArgsConstructor
     @AllArgsConstructor
     public static class Place {
