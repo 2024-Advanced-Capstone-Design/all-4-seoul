@@ -22,11 +22,13 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.annotations.DynamicInsert;
 
 @Entity
 @Getter
 @Table(name = "major_places")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@DynamicInsert
 public class MajorPlace extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,6 +56,9 @@ public class MajorPlace extends BaseTimeEntity {
 
     @OneToOne(mappedBy = "majorPlace")
     private Place place;
+
+    @Column(nullable = false)
+    private boolean latest = true;
   
     public MajorPlace (
             String areaName,
