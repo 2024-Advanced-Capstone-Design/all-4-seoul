@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,11 +30,11 @@ public class ParkingLot {
 
     private String code;
 
-    private String capacity;
+    private Integer capacity;
 
-    private String currentParkingCount;
+    private Integer currentParkingCount;
 
-    private String currentParkingTime;
+    private LocalDateTime currentParkingTime;
 
     private String currentParkingYn;
 

@@ -13,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,37 +35,37 @@ public class LivePopulationStatus {
 
     private String areaCongestMessage;
 
-    private String minimumAreaPopulation;
+    private Integer minimumAreaPopulation;
 
-    private String maximumAreaPopulation;
+    private Integer maximumAreaPopulation;
 
-    private String malePopulationRate;
+    private Double malePopulationRate;
 
-    private String femalePopulationRate;
+    private Double femalePopulationRate;
 
-    private String populationRate0;
+    private Double populationRate0;
 
-    private String populationRate10;
+    private Double populationRate10;
 
-    private String populationRate20;
+    private Double populationRate20;
 
-    private String populationRate30;
+    private Double populationRate30;
 
-    private String populationRate40;
+    private Double populationRate40;
 
-    private String populationRate50;
+    private Double populationRate50;
 
-    private String populationRate60;
+    private Double populationRate60;
 
-    private String populationRate70;
+    private Double populationRate70;
 
-    private String resentPopulationRate;
+    private Double resentPopulationRate;
 
-    private String nonResentPopulationRate;
+    private Double nonResentPopulationRate;
 
     private String replaceYN;
 
-    private String populationTime;
+    private LocalDateTime populationTime;
 
     private String forecastYN;
 
@@ -121,13 +122,13 @@ public class LivePopulationStatus {
         @Column(name = "population_forecast_id")
         private Long id;
 
-        private String time;
+        private LocalDateTime time;
 
         private String congestLevel;
 
-        private String minimumForecastPopulation;
+        private Integer minimumForecastPopulation;
 
-        private String maximumForecastPopulation;
+        private Integer maximumForecastPopulation;
 
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "live_population_status_id")

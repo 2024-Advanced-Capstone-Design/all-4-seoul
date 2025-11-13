@@ -1,6 +1,9 @@
 package com.capstone.all4seoul.place.dto.response.externalApi;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -68,37 +71,38 @@ public class PlaceSearchResponseBySeoulDataApi {
             @JsonProperty("AREA_CONGEST_MSG")
             private String areaCongestMessage;
             @JsonProperty("AREA_PPLTN_MIN")
-            private String minimumAreaPopulation;
+            private Integer minimumAreaPopulation;
             @JsonProperty("AREA_PPLTN_MAX")
-            private String maximumAreaPopulation;
+            private Integer maximumAreaPopulation;
             @JsonProperty("MALE_PPLTN_RATE")
-            private String malePopulationRate;
+            private Double malePopulationRate;
             @JsonProperty("FEMALE_PPLTN_RATE")
-            private String femalePopulationRate;
+            private Double femalePopulationRate;
             @JsonProperty("PPLTN_RATE_0")
-            private String populationRate0;
+            private Double populationRate0;
             @JsonProperty("PPLTN_RATE_10")
-            private String populationRate10;
+            private Double populationRate10;
             @JsonProperty("PPLTN_RATE_20")
-            private String populationRate20;
+            private Double populationRate20;
             @JsonProperty("PPLTN_RATE_30")
-            private String populationRate30;
+            private Double populationRate30;
             @JsonProperty("PPLTN_RATE_40")
-            private String populationRate40;
+            private Double populationRate40;
             @JsonProperty("PPLTN_RATE_50")
-            private String populationRate50;
+            private Double populationRate50;
             @JsonProperty("PPLTN_RATE_60")
-            private String populationRate60;
+            private Double populationRate60;
             @JsonProperty("PPLTN_RATE_70")
-            private String populationRate70;
+            private Double populationRate70;
             @JsonProperty("RESNT_PPLTN_RATE")
-            private String resentPopulationRate;
+            private Double resentPopulationRate;
             @JsonProperty("NON_RESNT_PPLTN_RATE")
-            private String nonResentPopulationRate;
+            private Double nonResentPopulationRate;
             @JsonProperty("REPLACE_YN")
             private String replaceYn;
             @JsonProperty("PPLTN_TIME")
-            private String populationTime;
+            @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+            private LocalDateTime populationTime;
             @JsonProperty("FCST_YN")
             private String forecastYn;
             @JsonProperty("FCST_PPLTN")
@@ -109,13 +113,14 @@ public class PlaceSearchResponseBySeoulDataApi {
             @AllArgsConstructor
             public static class ForecastPopulation {
                 @JsonProperty("FCST_TIME")
-                private String time;
+                @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+                private LocalDateTime time;
                 @JsonProperty("FCST_CONGEST_LVL")
                 private String congestLevel;
                 @JsonProperty("FCST_PPLTN_MIN")
-                private String minimumForecastPopulation;
+                private Integer minimumForecastPopulation;
                 @JsonProperty("FCST_PPLTN_MAX")
-                private String maximumForecastPopulation;
+                private Integer maximumForecastPopulation;
             }
         }
 
@@ -182,11 +187,12 @@ public class PlaceSearchResponseBySeoulDataApi {
             @JsonProperty("PRK_CD")
             private String code;
             @JsonProperty("CPCITY")
-            private String capacity;
+            private Integer capacity;
             @JsonProperty("CUR_PRK_CNT")
-            private String currentParkingCount;
+            private Integer currentParkingCount;
             @JsonProperty("CUR_PRK_TIME")
-            private String currentParkingTime;
+            @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+            private LocalDateTime currentParkingTime;
             @JsonProperty("CUR_PRK_YN")
             private String currentParkingYn;
             @JsonProperty("PAY_YN")
