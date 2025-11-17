@@ -27,6 +27,9 @@ public class HourlyParkingStats {
     @Column(nullable = false)
     private Integer statHour;
 
+    @Column(nullable = false)
+    private Integer dayOfWeek;
+
     private Double avgCapacity;
     private Double avgCurrentParkingCount;
 
@@ -34,6 +37,7 @@ public class HourlyParkingStats {
         this.areaCode = dto.getAreaCode();
         this.statDate = date;
         this.statHour = dto.getHour();
+        this.dayOfWeek = date.getDayOfWeek().getValue();
         this.avgCapacity = dto.getAvgCapacity();
         this.avgCurrentParkingCount = dto.getAvgCurrentParkingCount();
     }

@@ -27,6 +27,9 @@ public class HourlyPopulationStats {
     @Column(nullable = false)
     private Integer statHour;
 
+    @Column(nullable = false)
+    private Integer dayOfWeek;
+
     private Double avgMinPopulation;
     private Double avgMaxPopulation;
 
@@ -39,6 +42,7 @@ public class HourlyPopulationStats {
         this.areaCode = dto.getAreaCode();
         this.statDate = date;
         this.statHour = dto.getHour();
+        this.dayOfWeek = date.getDayOfWeek().getValue();
         this.avgMinPopulation = dto.getAvgMinPopulation();
         this.avgMaxPopulation = dto.getAvgMaxPopulation();
         this.avgPopRate0010 = dto.getAvgPopRate0010();
