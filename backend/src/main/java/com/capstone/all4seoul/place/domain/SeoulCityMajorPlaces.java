@@ -115,7 +115,20 @@ public enum SeoulCityMajorPlaces {
     POI112("청계산"),
     POI113("청와대"),
     POI114("북창동 먹자골목"),
-    POI115("남대문시장");
+    POI115("남대문시장"),
+    POI116("익선동"),
+    POI117("신정네거리역"),
+    POI118("잠실새내역"),
+    POI119("잠실역"),
+    POI120("잠실롯데타워 일대"),
+    POI121("송리단길·호수단길"),
+    POI122("신촌 스타광장"),
+    POI123("보라매공원"),
+    POI124("서대문독립공원"),
+    POI125("안양천"),
+    POI126("여의서로"),
+    POI127("올림픽공원"),
+    POI128("홍제폭포");
 
     private final String areaName;
 
@@ -126,5 +139,4 @@ public enum SeoulCityMajorPlaces {
     public String getAreaName() {
         return areaName;
     }
-
 }
