@@ -24,7 +24,6 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -34,7 +33,7 @@ import java.util.concurrent.TimeUnit;
 @Component
 @EnableScheduling
 @RequiredArgsConstructor
-public class DataFetchService {
+public class DataFetchScheduler {
 
     private final MajorPlaceRepository majorPlaceRepository;
     private static final int THREAD_COUNT = 100; // 스레드 풀의 크기
