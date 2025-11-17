@@ -38,7 +38,7 @@ public class InitDb {
     public void init() {
 //        this.initService.saveCrawledPlaces();
 //        this.initService.saveMajorPlaces();
-        this.initService.createUsers();
+//        this.initService.createUsers();️
     }
 
     @Component
