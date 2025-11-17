@@ -57,9 +57,6 @@ public class MajorPlace extends BaseTimeEntity {
     @OneToOne(mappedBy = "majorPlace")
     private Place place;
 
-    @Column(nullable = false)
-    private boolean latest = true;
-  
     public MajorPlace (
             String areaName,
             String areaCode,
