@@ -1,6 +1,7 @@
 package com.capstone.all4seoul.seoulCityData.dto.response;
 
 import com.capstone.all4seoul.seoulCityData.domain.population.LivePopulationStatus;
+import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,22 +15,22 @@ public class LivePopulationStatusResponse {
     private Long id;
     private String areaCongestLevel;
     private String areaCongestMessage;
-    private String minimumAreaPopulation;
-    private String maximumAreaPopulation;
-    private String malePopulationRate;
-    private String femalePopulationRate;
-    private String populationRate0;
-    private String populationRate10;
-    private String populationRate20;
-    private String populationRate30;
-    private String populationRate40;
-    private String populationRate50;
-    private String populationRate60;
-    private String populationRate70;
-    private String resentPopulationRate;
-    private String nonResentPopulationRate;
+    private Integer minimumAreaPopulation;
+    private Integer maximumAreaPopulation;
+    private Double malePopulationRate;
+    private Double femalePopulationRate;
+    private Double populationRate0;
+    private Double populationRate10;
+    private Double populationRate20;
+    private Double populationRate30;
+    private Double populationRate40;
+    private Double populationRate50;
+    private Double populationRate60;
+    private Double populationRate70;
+    private Double resentPopulationRate;
+    private Double nonResentPopulationRate;
     private String replaceYN;
-    private String populationTime;
+    private LocalDateTime populationTime;
     private String forecastYN;
     private List<PopulationForecastResponse> populationForecasts = new ArrayList<>();
 

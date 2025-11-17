@@ -1,6 +1,7 @@
 package com.capstone.all4seoul.seoulCityData.dto.response;
 
 import com.capstone.all4seoul.seoulCityData.domain.parkingLot.ParkingLot;
+import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,9 +12,9 @@ public class ParkingLotResponse {
     private Long id;
     private String name;
     private String code;
-    private String capacity;
-    private String currentParkingCount;
-    private String currentParkingTime;
+    private Integer capacity;
+    private Integer currentParkingCount;
+    private LocalDateTime currentParkingTime;
     private String currentParkingYn;
     private String payYn;
     private String rates;

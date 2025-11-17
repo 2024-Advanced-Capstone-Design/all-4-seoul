@@ -1,6 +1,7 @@
 package com.capstone.all4seoul.seoulCityData.dto.response;
 
 import com.capstone.all4seoul.seoulCityData.domain.population.LivePopulationStatus;
+import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,10 +10,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class PopulationForecastResponse {
     private Long id;
-    private String time;
+    private LocalDateTime time;
     private String congestLevel;
-    private String minimumForecastPopulation;
-    private String maximumForecastPopulation;
+    private Integer minimumForecastPopulation;
+    private Integer maximumForecastPopulation;
 
     public static PopulationForecastResponse of(LivePopulationStatus.PopulationForecast populationForecast) {
         PopulationForecastResponse response = new PopulationForecastResponse();
