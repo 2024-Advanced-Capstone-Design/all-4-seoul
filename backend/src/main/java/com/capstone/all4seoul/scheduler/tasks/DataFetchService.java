@@ -9,6 +9,9 @@ import com.capstone.all4seoul.seoulCityData.domain.parkingLot.ParkingLot;
 import com.capstone.all4seoul.seoulCityData.domain.population.LivePopulationStatus;
 import com.capstone.all4seoul.seoulCityData.domain.weather.WeatherStatus;
 import com.capstone.all4seoul.seoulCityData.repository.MajorPlaceRepository;
+import java.util.Collections;
+import java.util.Optional;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpMethod;
@@ -26,15 +29,14 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Component
 @EnableScheduling
 @RequiredArgsConstructor
-public class ScheduledTasks {
+public class DataFetchService {
+
     private final MajorPlaceRepository majorPlaceRepository;
-    private PlaceSearchResponseBySeoulDataApi.CityData cityData;
     private static final int THREAD_COUNT = 100; // 스레드 풀의 크기
 
     /**
@@ -73,16 +75,21 @@ public class ScheduledTasks {
                 PlaceSearchResponseBySeoulDataApi.class
         );
 
-        cityData = Objects.requireNonNull(responseEntity.getBody()).getCityData();
+        PlaceSearchResponseBySeoulDataApi responseBody = responseEntity.getBody();
+        if (responseBody == null || responseBody.getCityData() == null) {
+            log.warn("CityData is null for area: {}", areaName);
+            return areaName; // 그냥 건너뛰기
+        }
+        PlaceSearchResponseBySeoulDataApi.CityData cityData = responseBody.getCityData();
         majorPlaceRepository.save(
                 new MajorPlace(
                         cityData.getAreaName(),
                         cityData.getAreaCode(),
-                        savePopulationStatus(),
-                        saveParkingLots(),
-                        saveChargerStations(),
-                        saveWeatherStatus(),
-                        saveAdjacentEvents()
+                        savePopulationStatus(cityData),
+                        saveParkingLots(cityData),
+                        saveChargerStations(cityData),
+                        saveWeatherStatus(cityData),
+                        saveAdjacentEvents(cityData)
                 )
         );
 
@@ -90,7 +97,7 @@ public class ScheduledTasks {
     }
 
     //    @Scheduled(fixedRate = 24, timeUnit = TimeUnit.HOURS)
-    private List<AdjacentEvent> saveAdjacentEvents() {
+    private List<AdjacentEvent> saveAdjacentEvents(PlaceSearchResponseBySeoulDataApi.CityData cityData) {
         List<AdjacentEvent> adjacentEvents = new ArrayList<>();
         cityData.getAdjacentEvents()
                 .forEach(event -> {
@@ -102,7 +109,7 @@ public class ScheduledTasks {
     }
 
     //    @Scheduled(fixedRate = 24, timeUnit = TimeUnit.HOURS)
-    private List<ParkingLot> saveParkingLots() {
+    private List<ParkingLot> saveParkingLots(PlaceSearchResponseBySeoulDataApi.CityData cityData) {
         List<ParkingLot> parkingLots = new ArrayList<>();
         cityData.getAdjacentParkingLots()
                 .forEach(parkingLot -> {
@@ -115,31 +122,23 @@ public class ScheduledTasks {
     }
 
     //    @Scheduled(fixedRate = 30, timeUnit = TimeUnit.SECONDS)
-    private List<ChargerStation> saveChargerStations() {
-        List<ChargerStation> chargerStations = new ArrayList<>();
-        cityData.getAdjacentChargerStations()
-                .forEach(chargerStation -> {
-                            List<ChargerStation.ChargerDetail> chargerDetails = new ArrayList<>();
-                            chargerStation.getChargerDetails()
-                                    .forEach(chargerDetail -> chargerDetails.add(
-                                                    ChargerStation.ChargerDetail.createChargerDetail(chargerDetail)
-                                            )
-                                    );
+    private List<ChargerStation> saveChargerStations(PlaceSearchResponseBySeoulDataApi.CityData cityData) {
+        return cityData.getAdjacentChargerStations().stream()
+                .map(chargerStationDto -> {
+                    List<ChargerStation.ChargerDetail> chargerDetails = Optional.ofNullable(
+                                    chargerStationDto.getChargerDetails())
+                            .orElse(Collections.emptyList())
+                            .stream()
+                            .map(dto -> ChargerStation.ChargerDetail.createChargerDetail(dto))
+                            .collect(Collectors.toList());
 
-                            chargerStations.add(
-                                    new ChargerStation(
-                                            chargerStation,
-                                            chargerDetails
-                                    )
-                            );
-                        }
-                );
-
-        return chargerStations;
+                    return new ChargerStation(chargerStationDto, chargerDetails);
+                })
+                .collect(Collectors.toList());
     }
 
     //    @Scheduled(fixedRate = 30, timeUnit = TimeUnit.SECONDS)
-    private List<LivePopulationStatus> savePopulationStatus() {
+    private List<LivePopulationStatus> savePopulationStatus(PlaceSearchResponseBySeoulDataApi.CityData cityData) {
         List<LivePopulationStatus> livePopulationStatuses = new ArrayList<>();
         cityData.getLivePopulationStatuses()
                 .forEach(livePopulationStatus -> {
@@ -163,7 +162,7 @@ public class ScheduledTasks {
     }
 
     //    @Scheduled(fixedRate = 15, timeUnit = TimeUnit.MINUTES)
-    private List<WeatherStatus> saveWeatherStatus() {
+    private List<WeatherStatus> saveWeatherStatus(PlaceSearchResponseBySeoulDataApi.CityData cityData) {
         List<WeatherStatus> weatherStatuses = new ArrayList<>();
         cityData.getWeatherStatuses()
                 .forEach(weatherStatus -> {
