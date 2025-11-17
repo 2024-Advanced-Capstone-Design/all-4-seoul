@@ -18,9 +18,14 @@ public class HourlyParkingStats {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, length = 10)
     private String areaCode;
+
+    @Column(nullable = false)
     private LocalDate statDate;
-    private int statHour;
+
+    @Column(nullable = false)
+    private Integer statHour;
 
     private Double avgCapacity;
     private Double avgCurrentParkingCount;
