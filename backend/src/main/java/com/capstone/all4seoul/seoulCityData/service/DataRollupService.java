@@ -16,6 +16,7 @@ import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Recover;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -31,7 +32,7 @@ public class DataRollupService {
     private final ParkingLotRepository parkingLotRepository;
 
     @Retryable(retryFor = Exception.class, maxAttempts = 3, backoff = @Backoff(delay = 1000))
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void runDailyStatisticsRollup(LocalDate yesterday) {
         LocalDateTime startOfYesterday = yesterday.atStartOfDay(); // 어제 00:00:00
         LocalDateTime endOfYesterday = yesterday.plusDays(1).atStartOfDay(); // 오늘 00:00:00
