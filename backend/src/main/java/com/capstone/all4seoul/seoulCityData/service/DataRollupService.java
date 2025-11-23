@@ -12,6 +12,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.retry.annotation.Backoff;
+import org.springframework.retry.annotation.Recover;
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
@@ -27,6 +30,7 @@ public class DataRollupService {
     private final LivePopulationStatusRepository livePopulationStatusRepository;
     private final ParkingLotRepository parkingLotRepository;
 
+    @Retryable(retryFor = Exception.class, maxAttempts = 3, backoff = @Backoff(delay = 1000))
     @Transactional
     public void runDailyStatisticsRollup(LocalDate yesterday) {
         LocalDateTime startOfYesterday = yesterday.atStartOfDay(); // 어제 00:00:00
@@ -60,5 +64,10 @@ public class DataRollupService {
             log.error("[BATCH-FAIL] Failed to rollup Parking Stats. Error: {}", e.getMessage());
             throw new RuntimeException("Parking Stats Rollup Failed", e); // 실패 시 Batch에 알림
         }
+    }
+
+    @Recover
+    public void recover(Exception e) {
+        log.error("[BATCH-FAIL] Total 3 Failure for rollup Population Stats. Error: {}", e.getMessage());
     }
 }
